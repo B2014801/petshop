@@ -1,0 +1,7 @@
+.navbar >li{
+    list-style: none ;
+    padding: 12px 12px;
+}
+.navbar >li:hover{
+    background-color: pink;
+}
