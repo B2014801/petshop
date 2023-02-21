@@ -6,10 +6,6 @@
             <td><input class="form-control" name="tendanhmuc" type="text"></td>
         </tr>
         <tr>
-            <td><Label class="form-check-label mr-2">Thứ tự</Label></td>
-            <td><input class="form-control" name="thutu" type="number"></td>
-        </tr>
-        <tr>
             <td colspan="2"><button class="btn btn-secondary" name="themdanhmuc" type="submit">Thêm</button></td>
         </tr>
     </table>

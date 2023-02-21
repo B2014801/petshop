@@ -22,6 +22,13 @@
         if($tam=="quanlysanpham" && $query=='suasanpham'){
             include('modules/quanlysp/sua.php');
         }
+        if($tam=="quanlyhieusanpham" && $query=='themhieusanpham'){
+            include('modules/quanlyhieusp/them.php');
+            include('modules/quanlyhieusp/lietke.php');
+        }
+        if($tam=="quanlyhieusanpham" && $query=='suahieusanpham'){
+            include('modules/quanlyhieusp/sua.php');
+        }
         // else{
         //     include('modules/dashboard.php');
         // }

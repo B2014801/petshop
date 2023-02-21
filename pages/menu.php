@@ -1,13 +1,18 @@
-<nav class="navbar navbar-expand-lg navbar-light  py-1">
-            <div class="container-fluid">
+<?php
+  $sql_tbl_danhmuc="SELECT tendanhmuc FROM tbl_danhmuc";
+  $chon_tbl_danhmuc=mysqli_query($mysqli, $sql_tbl_danhmuc);
+  
+ ?> 
+<nav class="navbar navbar-expand-lg navbar-light  py-1 ">
+            <div class="container-fluid position-relative p-0">
               <button class="navbar-toggler" type="button" data-pos="left" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-               <a href="index.php" class="mr-2">
-                    <img  src="./img/logo.png" alt="" width="130" height="70">
-                </a>
-              
+              <a href="index.php" class="mr-2 ">
+                    <img  src="./img/logo.png" class="" alt="" width="130" height="70">
+              </a>
             <div class="collapse navbar-collapse justify-content-between mr-3" >
+            
               <ul class="navbar-nav ">
                 <li class="nav-item dropdown ">
                   <a class="nav-link dropdown-toggle" href="index.php" id="navbarDropdownMenuLink" role="button"  aria-haspopup="true" aria-expanded="false">
@@ -19,26 +24,18 @@
                     <a class="dropdown-item" href="#">Liên hệ</a>
                   </div>
                 </li>
+                <?php while($row=mysqli_fetch_array($chon_tbl_danhmuc)){ ?>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"  aria-haspopup="true" aria-expanded="false">
-                      Chó cảnh 
+                      <?php echo $row['tendanhmuc'] ?> 
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">chó phốc sóc</a>
-                      <a class="dropdown-item" href="#">chó poodle</a>
-                      <a class="dropdown-item" href="#">chó chihuahua</a>
-                      <a class="dropdown-item" href="#">chó golden</a>
-                    </div>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"  aria-haspopup="true" aria-expanded="false">
-                      Mèo cảnh
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="#">Mèo anh lông ngắn</a>
-                      <a class="dropdown-item" href="#">mèo anh lông dài</a>
-                      <a class="dropdown-item" href="#">mèo himalaya</a>
-                      <a class="dropdown-item" href="#">mèo ragdoll</a>
+                    <?php
+                     $chon_tbl_hieusp=mysqli_query($mysqli,"SELECT tendanhmuc,tenhieusp FROM tbl_hieusanpham WHERE '".$row['tendanhmuc']."'=tbl_hieusanpham.tendanhmuc");
+                     while($row_hieusp=mysqli_fetch_array($chon_tbl_hieusp)){
+                    ?>
+                      <a class="dropdown-item" href="#"><?php echo $row_hieusp['tenhieusp']?></a>
+                      <?php }}?>
                     </div>
                   </li>
               </ul>
@@ -47,15 +44,22 @@
                 <button class="border-0 bg-white" type="submit"><i class="fa-solid fa-magnifying-glass" ></i></button>
               </form>
             </div>
-            <div class="d-inline">
+            <div class="d-inline text-white">
               <a href="index.php?quanly=giohang" class="text-white mr-3"><i class="fa-solid fa-cart-shopping "></i></a>
-              <a href="index.php?quanly=dangky" class="text-white text-decoration-none">Đăng Ký |</a>
-              <a href="index.php?quanly=dangnhap" class="text-white text-decoration-none">Đăng Nhập</a>
+              <?php if(isset($_SESSION['dangnhap'])){ ?>
+                <?php echo isset($_SESSION['dangnhap']) ? $_SESSION['dangnhap'] :''; ?>
+                <a href="index.php?action=dangxuat" class="text-decoration-none text-white" style="position: absolute; top:0;right:0;"><i class="fa-solid fa-arrow-right-from-bracket mr-3"></i>Thoát</a>
+                <?php }else{ ?>
+              <a href="index.php?quanly=dangnhap" class="text-white text-decoration-none"><i class="fa-solid fa-user"></i>  |</a>
+              <a href="index.php?quanly=dangky" class="text-white text-decoration-none"><i class="fa-solid fa-user-plus"></i></a>
+                <?php }?>
             </div>
             </div>
           </nav>
-
+            
           <div class="collapse navbar-collapse navbar navbar-expand-lg bg-dark   py-1 " id="navbarNavDropdown">
+          
+              
             <ul class="navbar-nav ">
                <form class="form-inline my-2 my-lg-0 bg-white border-0 rounded p-1">
                   <div class="input-group">

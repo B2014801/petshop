@@ -90,9 +90,18 @@ a{
     border: 1px solid #000;
    
 }
+.delete-purchase-icon{
+    border-radius:50%; 
+    border: 1px solid #000; 
+    padding:4px;
+    background-color: #fff;
+}
+.delete-purchase-icon:hover{
+    background-color: pink;
+}
 /* chi tiet san pham */
 .accordion-button:not(.collapsed){
-    background-color: #f7f7f7;
+    background-color: #7e7373;
    
 }
 

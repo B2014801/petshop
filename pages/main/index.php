@@ -1,5 +1,4 @@
 <section >
-       
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
             <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -131,8 +130,3 @@
       <!-- <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
         Accordion Item #1
       </button> -->
-      <div>
-        <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
-          <i class="fas fa-arrow-up"></i>
-        </button>
-      </div>

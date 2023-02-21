@@ -14,10 +14,6 @@
             <td><input class="form-control" value="<?php echo $row['tendanhmuc']?>" name="tendanhmuc" type="text"></td>
         </tr>
         <tr>
-            <td><Label class="form-check-label mr-2">Thứ tự</Label></td>
-            <td><input class="form-control" value="<?php echo $row['thutu']?>" name="thutu" type="number"></td>
-        </tr>
-        <tr>
             <td colspan="2"><button class="btn btn-secondary" name="suadanhmuc" type="submit">Sửa</button></td>
         </tr>
         <?php

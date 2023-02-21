@@ -1,17 +1,17 @@
 <div  class="container w-50 border border-primary rounded my-3 p-0">
-            <form action="">
+            <form action="" method="post">
                 <h3 class="bg-success text-white p-2 text-organ text-center">Chào mừng bạn đến với shop thú cưng</h3>
                 <div  class="m-3">
                 <div class="form-group font-weight-bold ">
                     <label  for="">Email* </label>
                     <div >
-                        <input type="email" class="form-control" placeholder="Vui lòng nhập vào email của bạn">
+                        <input name="email" type="email" class="form-control" placeholder="Vui lòng nhập vào email của bạn">
                     </div>
                 </div>
                 <div class="form-group font-weight-bold ">
                     <label  for="">Mật khẩu* </label>
                     <div >
-                        <input type="password" class="form-control" placeholder="Tối thiểu 6 ký tự bao gồm cả chữ và số">
+                        <input name='matkhau' type="password" class="form-control" placeholder="Nhập mật khẩu của bạn">
                     </div>
                 </div>
                 <div class="form-group form-check ">
@@ -19,7 +19,7 @@
                     <label for="" class="form-check-label">Ghi nhớ tôi</label>
                 </div>
                 <div>
-                    <button class="btn btn-info" type="submit">Đăng nhập</button>
+                    <button class="btn btn-info" name="dangnhap" type="submit">Đăng nhập</button>
                 </div>  
             </div>
             </form>
