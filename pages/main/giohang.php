@@ -10,7 +10,7 @@
         </tr>
         <tbody>
             <tr>
-               <td><a href="" class="text-dark text-decoration-none"><i class="fa-sharp fa-solid fa-xmark delete-purchase-icon" style=""></i> Xóa</a></td>
+               <td><a href="" class="text-dark text-decoration-none"><i class="fa-sharp fa-solid fa-xmark delete-purchase-icon" ></i> Xóa</a></td>
                 <td>
                 <img class="m-2" width="130" height="100" src="./img/trangchu/anh-cho-phoc-soc-12093-1247x960.jpg" alt="">
                 </td>

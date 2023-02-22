@@ -15,7 +15,7 @@
         </tr>
         <tr>
             <td><label class="form-check-label mr-2"  for="">Mã sản phẩm</label></td>
-            <td><input class="form-control" value=<?php echo $row['masp'] ?> name="masp" type="text"></td>
+            <td><input class="form-control" name="masp" type="text" value=<?php echo $row['masp'] ?> ></td>
         </tr>
         <tr>
             <td><Label class="form-check-label mr-2">Hình ảnh</Label></td>
@@ -34,15 +34,15 @@
             <td><input name="motasp" type="text" class="form-control" value=<?php echo $row['motasp']?> ></td>
         </tr>
         <tr>
-            <td>Danh mục</td>
+            <td>Nhãn hiệu</td>
             <td>
-            <select name="tendanhmuc">
+            <select name="hieusanpham">
                 <?php
-                $sql="SELECT * from tbl_danhmuc";
-                $sql_tble_danhmuc=mysqli_query($mysqli,$sql);
-                while($row_danhmuc=mysqli_fetch_array($sql_tble_danhmuc)){
+                $sql="SELECT * from tbl_hieusanpham";
+                $sql_tble_hieusp=mysqli_query($mysqli,$sql);
+                while($row_hieusanpham=mysqli_fetch_array($sql_tble_hieusp)){
                  ?>
-                <option <?php echo ($row_danhmuc['id_danhmuc']==$row['id_danhmuc']) ? 'selected' : '' ?> value="<?php echo $row_danhmuc['id_danhmuc'] ?>" ><?php {echo $row_danhmuc['tendanhmuc']; } ?></option>
+                <option <?php echo ($row_hieusanpham['id_hieusanpham']==$row['id_hieusanpham']) ? 'selected' : '' ?> value="<?php echo $row_hieusanpham['id_hieusanpham'] ?>" ><?php {echo $row_hieusanpham['tenhieusp']; } ?></option>
                 <?php }?>
                </select>
             </td>

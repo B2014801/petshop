@@ -26,15 +26,16 @@
             <td><input class="form-control" name="motasp" type="text"></td>
         </tr>
         <tr>
-            <td>Danh mục</td>
+            <td>Hiệu sản phẩm</td>
             <td>
-            <select name="tendanhmuc">
+            <select name="hieusanpham">
                 <?php
-                $sql="SELECT * from tbl_danhmuc";
-                $sql_tble_danhmuc=mysqli_query($mysqli,$sql);
-                while($row=mysqli_fetch_array($sql_tble_danhmuc)){
+                    $sql_tbl_chon_hieusp="SELECT id_hieusanpham,tenhieusp from tbl_hieusanpham";
+                    $sql_query=mysqli_query($mysqli,$sql_tbl_chon_hieusp);
+                    while($row=mysqli_fetch_array($sql_query)){
                  ?>
-                <option value="<?php echo $row['id_danhmuc'] ?>" ><?php echo $row['tendanhmuc'] ?></option>
+                <option value="<?php echo $row['id_hieusanpham'] ?>" ><?php echo $row['tenhieusp'] ?></option>
+
                 <?php }?>
                </select>
             </td>

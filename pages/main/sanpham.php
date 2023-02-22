@@ -1,0 +1,1 @@
+<h3 class="text-center text-uppercase"><?php echo $_GET['sanpham']; ?></h3>

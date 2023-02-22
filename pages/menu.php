@@ -26,7 +26,7 @@
                 </li>
                 <?php while($row=mysqli_fetch_array($chon_tbl_danhmuc)){ ?>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"  aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="index.php?sanpham=<?php echo $row['tendanhmuc'] ?>" id="navbarDropdownMenuLink" role="button"  aria-haspopup="true" aria-expanded="false">
                       <?php echo $row['tendanhmuc'] ?> 
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -58,8 +58,6 @@
           </nav>
             
           <div class="collapse navbar-collapse navbar navbar-expand-lg bg-dark   py-1 " id="navbarNavDropdown">
-          
-              
             <ul class="navbar-nav ">
                <form class="form-inline my-2 my-lg-0 bg-white border-0 rounded p-1">
                   <div class="input-group">

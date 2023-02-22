@@ -5,11 +5,15 @@
     while($row= mysqli_fetch_array($query_sua_hieusp)){
 ?>
 <h6>Sửa hiệu sản phẩm</h6>
-<form action="modules/quanlyhieusp/xuly.php?id_hieusanpham=<?php echo $_GET['id_hieusanpham'] ?>" method="POST">
+<form action="modules/quanlyhieusp/xuly.php?id_hieusanpham=<?php echo $_GET['id_hieusanpham'] ?>" method="POST" enctype="multipart/form-data">
     <table class="table table-bordered">
         <tr>
             <td><label class="form-check-label mr-2"  for="">Tên hiệu sản phẩm</label></td>
             <td><input class="form-control" value="<?php echo $row['tenhieusp']; ?>" name="tenhieusanpham" type="text"></td>
+        </tr>
+        <tr>
+            <td><label class="form-check-label mr-2"  for="">Hình ảnh hiệu sản phẩm</label></td>
+            <td><input  name="anhhieusanpham"  type="file"></td>
         </tr>
         <tr>
         <td>Danh mục</td>

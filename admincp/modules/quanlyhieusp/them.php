@@ -1,9 +1,13 @@
 <h6>Thêm hiệu sản phẩm</h6>
-<form action="modules/quanlyhieusp/xuly.php" method="POST">
+<form action="modules/quanlyhieusp/xuly.php" method="POST" enctype="multipart/form-data">
     <table class="table table-bordered">
         <tr>
             <td><label class="form-check-label mr-2"  for="">Tên hiệu sản phẩm</label></td>
             <td><input class="form-control" name="tenhieusanpham" type="text"></td>
+        </tr>
+        <tr>
+            <td><label class="form-check-label mr-2"  for="">Hình ảnh hiệu sản phẩm</label></td>
+            <td><input  name="anhhieusanpham" type="file"></td>
         </tr>
         <tr>
         <td>Danh mục</td>

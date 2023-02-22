@@ -7,6 +7,7 @@
         <tr>
             <th><label class="form-check-label mr-2"  for="">ID</label></th>
             <th><label class="form-check-label mr-2"  for="">Tên hiệu sản phẩm</label></th>
+            <th><label class="form-check-label mr-2"  for="">Ảnh hiệu sản phẩm</label></th>
             <th><label class="form-check-label mr-2"  for="">Danh mục</label></th>
             <th><label class="form-check-label mr-2"  for="">Quản lý</label></th>
         </tr>
@@ -21,6 +22,7 @@
         <tr>
             <td><?php echo $row['id_hieusanpham'] ?></td>
             <td><?php echo $row['tenhieusp'] ?></td>
+            <td class="text-center"><img src="modules/quanlyhieusp/uploads/<?php echo $row['anhhieusanpham']?>"  alt="" width="100px" height="60px"></td>
             <td><?php echo $row['tendanhmuc'] ?></td>
             <td>
                 <a href="modules/quanlyhieusp/xuly.php?id_hieusanpham=<?php echo $row['id_hieusanpham']?>">Xoá</a> | 

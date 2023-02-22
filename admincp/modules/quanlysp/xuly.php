@@ -11,13 +11,13 @@ $giasp=$_POST['giasp'] ?? '';
 $soluongsp=$_POST['soluongsp'] ?? '';
 $motasp=$_POST['motasp'] ?? '';
 $tinhtrangsp=$_POST['tinhtrangsp']?? '';
-$id_danhmuc=$_POST['tendanhmuc']?? '';
+$id_hieusanpham=$_POST['hieusanpham']?? '';
 // hinh anh
 
 
 
     if(isset($_POST['themsp'])){
-    $sql_them=("INSERT INTO tbl_sanpham(tensp,masp,hinhanhsp,giasp,soluongsp,motasp,tinhtrangsp,id_danhmuc) VALUE('$tensp','$masp','$hinhanhsp','$giasp','$soluongsp','$motasp','$tinhtrangsp','$id_danhmuc')");
+    $sql_them=("INSERT INTO tbl_sanpham(tensp,masp,hinhanhsp,giasp,soluongsp,motasp,tinhtrangsp,id_hieusanpham) VALUE('$tensp','$masp','$hinhanhsp','$giasp','$soluongsp','$motasp','$tinhtrangsp','$id_hieusanpham')");
     mysqli_query($mysqli,$sql_them); //ket noi voi csdl
     
     header('Location:../../index.php?action=quanlysanpham&query=themsanpham');
@@ -25,7 +25,7 @@ $id_danhmuc=$_POST['tendanhmuc']?? '';
     }
     if(isset($_POST['suasanpham'])){
         if(($hinhanhsp)!=''){
-            $sql_update="UPDATE tbl_sanpham SET tensp='$tensp',masp='$masp',hinhanhsp='$hinhanhsp',giasp='$giasp',motasp='$motasp',soluongsp='$soluongsp',tinhtrangsp='$tinhtrangsp',id_danhmuc='$id_danhmuc' WHERE id_sanpham='".$_GET['id_sanpham']."' ";
+            $sql_update="UPDATE tbl_sanpham SET tensp='$tensp',masp='$masp',hinhanhsp='$hinhanhsp',giasp='$giasp',motasp='$motasp',soluongsp='$soluongsp',tinhtrangsp='$tinhtrangsp',id_hieusanpham='$id_hieusanpham' WHERE id_sanpham='".$_GET['id_sanpham']."' ";
             $id=$_GET['id_sanpham'];
             $sql="SELECT * FROM tbl_sanpham WHERE id_sanpham='$id'";
             $sql_sp=mysqli_query($mysqli,$sql);
@@ -34,7 +34,7 @@ $id_danhmuc=$_POST['tendanhmuc']?? '';
         }
         }
         else{
-        $sql_update="UPDATE tbl_sanpham SET tensp='$tensp',masp='$masp',giasp='$giasp',motasp='$motasp',soluongsp='$soluongsp',tinhtrangsp='$tinhtrangsp',id_danhmuc='$id_danhmuc' WHERE id_sanpham='".$_GET['id_sanpham']."' ";
+        $sql_update="UPDATE tbl_sanpham SET tensp='$tensp',masp='$masp',giasp='$giasp',motasp='$motasp',soluongsp='$soluongsp',tinhtrangsp='$tinhtrangsp',id_hieusanpham='$id_hieusanpham' WHERE id_sanpham='".$_GET['id_sanpham']."' ";
         }
         mysqli_query($mysqli,$sql_update);
         header('Location:../../index.php?action=quanlysanpham&query=themsanpham');
