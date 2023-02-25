@@ -30,7 +30,9 @@ if(isset($_POST['dangky'])){
     $count=mysqli_num_rows($sql_mk);
     if($count>0){
         header('Location:index.php');
-        $_SESSION['dangnhap']=mysqli_fetch_array($sql_mk)['tenkhachhang'];
+        $row = mysqli_fetch_array($sql_mk);
+        $_SESSION['dangnhap']= $row['tenkhachhang'];//de hien thi thong tin dang nhap
+        $_SESSION['ktradangnhap']= $row['id_taikhoan']; // kiem tra co dang nhap thi them vao tbl_giohang
     }
     else{
         echo '<script> alert("Tài khoản hoặc mật khẩu không đúng.Làm ơn đăng nhập lại."); </script>';
