@@ -42,13 +42,11 @@
                         <input name="user-name" class="form-control" placeholder="Vui lòng nhập vào tên của bạn">
                     </div>
                 </div>
-                <div class="form-group  mb-0">
-                    <label class="font-weight-bold "  for="">Mật khẩu* </label>
-                    <input type="password" id="password-input" name="password" class="form-control" placeholder="Nhập mật khẩu của bạn">
-                    <div class="form-check mt-1">
-                        <input class="form-check-input" type="checkbox" onclick="ShowPassword()">
-                        <label class="form-check-label " id="wrong-pass" for=""></label>
-                        <label class="form-check-label " for="">Hiện mật khẩu</label>
+                <div class="form-group font-weight-bold ">
+                    <label   for="">Mật khẩu* </label>
+                    <div class="input-group border">
+                        <input id="password-input-matkhau" name='password' type="password" class="form-control border-0" placeholder="Nhập mật khẩu của bạn" >
+                        <i onclick="ShowPassword(document.querySelector('#password-input-matkhau'))" class="fa-sharp fa-solid fa-eye border-0 bg-white px-2 my-auto"></i>
                     </div>
                 </div>
                 <div class="form-group form-check ">

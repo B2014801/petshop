@@ -1,21 +1,4 @@
-<?php
-    // session_start();
-    if(isset($_POST['dangky'])){
-        $hoten=$_POST['hoten'];
-        $email=$_POST['email'];
-        $matkhau=($_POST['matkhau']);
-        $diachi=$_POST['diachi'];
 
-        $sql="INSERT INTO tbl_dangky(tenkhachhang,email,matkhau,diachi) value('$hoten','$email','$matkhau','$diachi')";
-        $sql_dangky=mysqli_query($mysqli,$sql);
-
-        if(isset($sql_dangky)){
-            $_SESSION['dangky']=$hoten;
-            echo "<script>alert('thành công');</script>";
-            header("Location:../index.php");
-        }
-    }
-?>
 <div  class="container col-md-6 col-10 border border-primary rounded my-3 p-0">
             <form action="" enctype="application/x-www-form-urlencoded" onsubmit='return checkdk();' method="POST" >
                 <h3 class="bg-success text-white p-2 text-organ text-center">Tạo tài khoản</h3>
@@ -35,18 +18,17 @@
                     </div>
                     <div class="form-group font-weight-bold ">
                         <label   for="">Mật khẩu* </label>
-                        <div>
-                            <input id="password-input" name="matkhau" type="password" class="form-control" placeholder="Tối thiểu 6 ký tự bao gồm cả chữ và số">
+                        <div class="input-group border">
+                            <input id="password-input-matkhau" name='matkhau' type="password" class="form-control border-0" placeholder="Nhập mật khẩu của bạn" >
+                            <i onclick="ShowPassword(document.querySelector('#password-input-matkhau'))" class="fa-sharp fa-solid fa-eye border-0 bg-white px-2 my-auto"></i>
                         </div>
                     </div>
                     <div class="form-group font-weight-bold ">
                         <label   for="">Lặp lại mật khẩu* </label>
-                        <div>
-                            <input  type="password" class="form-control password-input" placeholder="Tối thiểu 6 ký tự bao gồm cả chữ và số">
+                        <div class="input-group border">
+                            <input id="password-input-matkhau-repeat" name='matkhau' type="password" class="form-control border-0" placeholder="Nhập mật khẩu của bạn" >
+                            <i onclick="ShowPassword(document.querySelector('#password-input-matkhau-repeat'))" class="fa-sharp fa-solid fa-eye border-0 bg-white px-2 my-auto"></i>
                         </div>
-                    </div>
-                    <div class="form-group font-weight-bold ">
-                    <input class="mt-2 mr-2" type="checkbox" onclick="ShowPassword()">Hiện mật khẩu
                     </div>
                     <div class="form-group font-weight-bold ">
                         <label   for="">Địa chỉ nhận hàng* </label>

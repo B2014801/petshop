@@ -1,8 +1,7 @@
-pass=document.querySelector('#password-input');
-    function ShowPassword(){
-    if (pass.type === "password") {
-        pass.type = "text";
+function ShowPassword(input){
+    if (input.type === "password") {
+        input.type = "text";
     } else {
-        pass.type = "password";
+        input.type = "password";
     }
 }

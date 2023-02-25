@@ -26,7 +26,7 @@
                 </li>
                 <?php while($row=mysqli_fetch_array($chon_tbl_danhmuc)){ ?>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="index.php?sanpham=<?php echo $row['tendanhmuc'] ?>" id="navbarDropdownMenuLink" role="button"  aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="index.php?danhmuc=<?php echo $row['tendanhmuc'] ?>" id="navbarDropdownMenuLink" role="button"  aria-haspopup="true" aria-expanded="false">
                       <?php echo $row['tendanhmuc'] ?> 
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -34,14 +34,16 @@
                      $chon_tbl_hieusp=mysqli_query($mysqli,"SELECT tendanhmuc,tenhieusp FROM tbl_hieusanpham WHERE '".$row['tendanhmuc']."'=tbl_hieusanpham.tendanhmuc");
                      while($row_hieusp=mysqli_fetch_array($chon_tbl_hieusp)){
                     ?>
-                      <a class="dropdown-item" href="#"><?php echo $row_hieusp['tenhieusp']?></a>
+                      <a class="dropdown-item" href="index.php?danhmuc=<?php echo $row['tendanhmuc'] ?>&hieusanpham=<?php echo $row_hieusp['tenhieusp'] ?>"><?php echo $row_hieusp['tenhieusp']?></a>
                       <?php }}?>
                     </div>
                   </li>
               </ul>
-              <form class="form-inline my-2 my-lg-0 bg-white border-0 rounded p-1">
-                <input class=" border-0" type="search" placeholder="Tìm kiếm..." aria-label="Search" style="outline: none;">
-                <button class="border-0 bg-white" type="submit"><i class="fa-solid fa-magnifying-glass" ></i></button>
+              <form action="index.php?quanly=timkiem" class="form-inline my-2 my-lg-0 bg-white border-0 rounded p-1" method="GET">
+                <div class="input-group">
+                  <input class="border-0" type="search" placeholder="Tìm kiếm..." aria-label="Search" style="outline: none; width: 90%;" name="search_query">
+                  <button type="submit" class="border-0 bg-white" type="submit"><i class="fa-solid fa-magnifying-glass" ></i></button>
+                </div>
               </form>
             </div>
             <div class="d-inline text-white">
@@ -59,10 +61,10 @@
             
           <div class="collapse navbar-collapse navbar navbar-expand-lg bg-dark   py-1 " id="navbarNavDropdown">
             <ul class="navbar-nav ">
-               <form class="form-inline my-2 my-lg-0 bg-white border-0 rounded p-1">
+               <form action="index?search=timkiem" class="form-inline my-2 my-lg-0 bg-white border-0 rounded p-1" method="GET">
                   <div class="input-group">
-                    <input class="border-0" type="search" placeholder="Tìm kiếm..." aria-label="Search" style="outline: none; width: 90%;">
-                    <button class="border-0 bg-white" type="submit"><i class="fa-solid fa-magnifying-glass" ></i></button>
+                    <input class="border-0" name="keysearch" type="search" placeholder="Tìm kiếm..." aria-label="Search" style="outline: none; width: 90%;">
+                    <button type="submit" name="timsanpham" class="border-0 bg-white" type="submit"><i class="fa-solid fa-magnifying-glass" ></i></button>
                   </div>
                 </form>
               <li class="nav-item dropdown">

@@ -1,27 +1,32 @@
-let scroll_button = document.getElementById("btn-back-to-top");
-// When the user scrolls down 20px from the top of the document, show the button
+          let mybutton = document.getElementById("btn-back-to-top");
+
+
+          window.onscroll = function () {
+            scrollFunction();
+          };
+
 function scrollFunction() {
   if (
-    document.body.scrollTop > 20 ||
-    document.documentElement.scrollTop > 20
+    document.body.scrollTop > 400 ||
+    document.documentElement.scrollTop > 400
   ) {
-    scroll_button.style.display = "block";
+    mybutton.style.display = "block";
   } else {
-    scroll_button.style.display = "none";
+    mybutton.style.display = "none";
   }
 }
 // When the user clicks on the button, scroll to the top of the document
-scroll_button.addEventListener("click", backToTop);
+mybutton.addEventListener("click", backToTop);
 
 function backToTop() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
   }
-window.onscroll = function () {
-    scrollFunction();
-};
+
 // dang ky 
-pass=document.querySelector('#password-input');
+pass=document.querySelectorAll('.password-input');
 hoten=document.querySelector('#hoten');
 function checkdk(){
     if(hoten.value==""){
@@ -55,31 +60,12 @@ function checkdk(){
     }
 
     }
-    function ShowPassword(){
-    if (pass.type === "password") {
-        pass.type = "text";
+    function ShowPassword(input){
+    if (input.type === "password") {
+      input.type = "text";
     } else{
-        pass.type = "password";
+      input.type = "password";
     }
 }
-function quantitychange(){
-    let amountElement = document.getElementById('amount');
-    let amount = amountElement.value;
-    amountElement.addEventListener("input", function(){
-        amount = amountElement.value;
-    })
-    document.getElementById('plus-sp').addEventListener("click", function(){
-        amount++; 
-        amountElement.value=amount;
-    })
 
-    document.getElementById('minus-sp').addEventListener("click", function(){
-        if(amount >1){
-            amount--;
-            amountElement.value=amount;
-        }
-    })
 
-    
-}
-quantitychange();

@@ -1,38 +1,35 @@
+<?php
+  $sql="SELECT * FROM tbl_sanpham where id_sanpham='".$_GET['sanpham']."'";
+  $sql_sanpham=mysqli_query($mysqli,$sql);
+  while($row = mysqli_fetch_array($sql_sanpham)){
+?>
 <section class="mx-5">
 <section>
         <div class="row my-3">
             <div class="col-md-5 col-12">
                 <div class="card text-center border-0">
                     <div class="mt-2" style="text-align: left;">
-                        <img height="300px" width="400px" class="img-fluid"  src="./img/tintuc/cho-becgie-Duc-203049-471x400.jpg" alt="book1">
+                        <img class="img-fluid" src="admincp/modules/quanlysp/uploads/<?php echo $row['hinhanhsp']; ?>" alt="book1" style="width:500px;height: 400px;">
                     </div>
                     <div class="card-body">
-                        <!-- <nav class="hinhanhthunho">
-                            <div class="d-inline">
-                                <img height="300px" width="400px" class="img-fluid w-25 " src="./img/tintuc/Meo-Anh-long-ngan-xam-xanh-535x400.jpg" alt="book1">
-                            </div>
-                            <div class="d-inline">
-                                <img height="300px" width="400px" class="img-fluid w-25 " src="./img/tintuc/sleeping-dog-images.jpg" alt="book1">
-                            </div>
-                        </nav> -->
                     </div>
                 </div>
             </div>
-            <div class="col-md-7 col-12">
+            <div class="col-md-7 col-12 pl-0">
                 <div class="row">
-                    <h2 class="text-uppercase">Book's Name</h2>
+            <form action="pages/main/themgiohang.php?id=<?php echo $row['id_sanpham']; ?>" method="POST" >
+                    <h2 class="text-uppercase"><?php  echo $row['tensp'] ?></h2>
                 </div>
                 <div class="row">
-                    <h2 class="text-danger text-uppercase">100.000 VND</h2>
+                    <h2 class="text-danger text-uppercase"><?php echo  $row['giasp'].'₫' ?></h2>
                 </div>
                 <div class="mt-4 row">
-                    <form action="">
                         <div class="d-flex">
                             <label class="text-uppercase d-inline mt-2" for="">Số lượng:</label>
-                            <div class="add-minus d-flex ms-2">
-                                <button id="btn-plus" class="minus-sp bg-light border border-light-subtle">-</button>
-                                <input  class="text-center bg-light border border-light-subtle" type="text" name="amount" id="amount" size="2" value="1" style="outline: none;">
-                                <button id="btn-minus" class="plus-sp bg-light border border-light-subtle">+</button>         
+                            <div class="add-minus  d-flex mx-1">
+                              <button type="text" class="minus-sp congtru  bg-light border border-light-subtle" id="minus-sp">-</button>
+                              <input class="text-center bg-light border border-light-subtle" type="text" name="amount" id="amount" size="2" value="1" style="outline: none;">
+                              <button class="plus-sp congtru bg-light border border-light-subtle" id="plus-sp">+</button>         
                             </div>
                         </div>
                         <div class="d-flex mt-5">
@@ -44,6 +41,7 @@
             </div>
         </div>
       </section>
+      
       <section>
         <div class="accordion accordion-flush" id="accordionFlushExample">
           <div class="accordion-item">
@@ -54,8 +52,8 @@
             </h2>
             <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
               <div class="accordion-body">
-                <p><b>Chó Phốc Sóc Mini trắng mã PS621</b> với vẻ ngoài tinh tú, kiêu sa cuốn hút, thân thiện có nét đầy nét tinh nghịch. Cún ham ăn được tẩy giun, tiêm phòng đầy đủ sẵn sàng là thành viên mới trong gia đình.</p>
-                <p class="text-center"><b>Quyền lợi có được khi mua Chó Phốc Sóc Mini trắng mã PS621 tại Pet Shop.</b></p>
+                <p><b><?php echo $row['tensp'].' </b>',$row['motasp'] ?></p>
+                <p class="text-center"><b>Quyền lợi có được khi mua <?php echo $row['tensp']  ?> tại Pet Shop.</b></p>
                 <ol>
                   <li>Bảo hành thuần chủng trọn đời.</li>
                   <li>Bảo hành bệnh truyền nhiễm nguy hiểm ở chó là Care và Parvo 7 ngày đầu về nhà mới. Ngoài ra, quý khách có thể mua thêm gói bảo hiểm sức khỏe 1 năm nếu có nhu cầu. (Thú cưng là động vật sống, nhạy cảm với môi trường sống, thức ăn… bởi vậy hãy chăm sóc theo hướng dẫn của PetHouse hướng dẫn nhé)</li>
@@ -73,11 +71,12 @@
             </h2>
             <div id="flush-collapseTwo" class="accordion-collapse collapse " aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
               <div class="accordion-body mt-3">
-                <h5 class="text-center">Nhận xét của bạn về "Tên sản phẩm"</h5>
+                <h5 class="text-center">Nhận xét của bạn về <?php echo $row['tensp']  ?></h5>
                 <div class="form-group">
                   <label class="form-check-label" for=""><b>Nhận xét *</b></label>
                   <textarea class="form-control" name="" id="" cols="30" rows="6"></textarea>
                 </div>
+                <?php }?>
                 <div class="form-inline ">
                     <div class="form-group col-sm-6 pl-md-0 pl-0  ">
                       <label for="form-check-label"><b>Tên</b></label>
@@ -110,3 +109,36 @@
         </div>
       </section>
 </section>
+<script>
+  function quantitychange(){
+    let amountElement = document.getElementById('amount');
+    let amount = amountElement.value;
+    amountElement.addEventListener("input", function(){
+        amount = amountElement.value;
+    })
+    document.getElementById('plus-sp').addEventListener("click", function(){
+        amount++; 
+        amountElement.value=amount;
+    })
+
+    document.getElementById('minus-sp').addEventListener("click", function(){
+        if(amount >1){
+            amount--;
+            amountElement.value=amount;
+        }
+    })
+    console.log(1);
+}
+quantitychange();
+var minusBtn = document.getElementById("minus-sp");
+var plusBtn = document.getElementById("plus-sp");
+
+// Add event listeners to the buttons
+minusBtn.addEventListener("click", function(event) {
+  event.preventDefault();
+});
+
+plusBtn.addEventListener("click", function(event) {
+  event.preventDefault(); 
+});
+</script>

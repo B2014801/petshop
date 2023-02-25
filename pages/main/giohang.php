@@ -55,3 +55,24 @@
         </div>
     </div>
     </div>
+    <script>
+        function quantitychange(){
+    let amountElement = document.getElementById('amount');
+    let amount = amountElement.value;
+    amountElement.addEventListener("input", function(){
+        amount = amountElement.value;
+    })
+    document.getElementById('plus-sp').addEventListener("click", function(){
+        amount++; 
+        amountElement.value=amount;
+    })
+
+    document.getElementById('minus-sp').addEventListener("click", function(){
+        if(amount >1){
+            amount--;
+            amountElement.value=amount;
+        }
+    })
+}
+quantitychange();
+    </script>
