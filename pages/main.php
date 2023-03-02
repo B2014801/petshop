@@ -13,6 +13,12 @@
       if($tam=='tintuc'){
         include('main/tintuc.php');
       }
+      if($tam=='taikhoan'){
+        include('main/taikhoan.php');
+      }
+      if($tam=='lienhe'){
+        include('main/lienhe.php');
+      }
       if(isset($_GET['danhmuc'])&&!isset($_GET['hieusanpham'])){
         include('main/danhmuc.php');
       }

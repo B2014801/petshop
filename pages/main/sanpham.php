@@ -5,6 +5,7 @@
             <?php
                 $sql="SELECT * from tbl_hieusanpham JOIN tbl_sanpham ON tbl_hieusanpham.id_hieusanpham=tbl_sanpham.id_hieusanpham WHERE tbl_hieusanpham.tenhieusp = '".$_GET['hieusanpham']."'";
                 $chon_tbl_hieusp=mysqli_query($mysqli,$sql);
+                if(mysqli_num_rows($chon_tbl_hieusp)>0){
                 while($row=mysqli_fetch_array($chon_tbl_hieusp)){
                     
             ?>
@@ -19,5 +20,5 @@
               </div>
               </a>
             </div>
-            <?php } ?>
+            <?php }}else{echo '<h6 class="text-center mt-3">"Thú cưng hiện đang hết hàng"</h6>';} ?>
           </div>

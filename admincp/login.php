@@ -1,14 +1,14 @@
-<?php
+<!-- <?php
     session_start();
     include("config/config.php");
     if(isset($_POST['dangnhap'])){
-    $username=$_POST['user-name'];
-    $password=md5($_POST['password']);
-    $sql="SELECT * FROM tbl_admin where username='$username' and password='$password'"; 
+    $email=$_POST['email'];
+    $matkhau=($_POST['matkhau']);
+    $sql="SELECT * FROM tbl_admin where email='$email' and matkhau='$matkhau'"; 
     $row=mysqli_query($mysqli,$sql);
     $count=mysqli_num_rows($row);
     if($count>0){
-        $_SESSION['dangnhap']=$username;
+        $_SESSION['dangnhap']=mysqli_fetch_array($row)['ten_admin'];
         header('Location:index.php');
     }
    else{
@@ -37,15 +37,15 @@
                 <h3 class="bg-success text-white p-2 text-organ text-center">Đăng nhập vào Admincp</h3>
                 <div  class="m-3">
                 <div class="form-group font-weight-bold ">
-                    <label  for="">Tên</label>
-                    <div >
-                        <input name="user-name" class="form-control" placeholder="Vui lòng nhập vào tên của bạn">
+                    <label  for="">Email</label>
+                    <div>
+                        <input name="email" class="form-control" placeholder="Vui lòng nhập vào email của bạn">
                     </div>
                 </div>
                 <div class="form-group font-weight-bold ">
                     <label   for="">Mật khẩu* </label>
                     <div class="input-group border">
-                        <input id="password-input-matkhau" name='password' type="password" class="form-control border-0" placeholder="Nhập mật khẩu của bạn" >
+                        <input id="password-input-matkhau" name='matkhau' type="password" class="form-control border-0" placeholder="Nhập mật khẩu của bạn" >
                         <i onclick="ShowPassword(document.querySelector('#password-input-matkhau'))" class="fa-sharp fa-solid fa-eye border-0 bg-white px-2 my-auto"></i>
                     </div>
                 </div>
@@ -71,4 +71,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" 
         crossorigin="anonymous"></script>
-</html>
+</html> -->

@@ -9,9 +9,12 @@
 }
 
 a{
-    text-decoration: none;
+    text-decoration: none !important;
+    color: #fff;
 }
-
+a:hover{
+    color: #fff;
+}
 .aspect-ratio-169 {
     display: block;
     position: relative;
@@ -112,7 +115,26 @@ a{
     background-color: #eee9e9 !important;
     color: #000;
 }
- 
+ /* lien he*/
+#lienhe-header{
+    position: relative;
+    padding: 100px 0;
+    text-align: center;
+    margin: 2px 10px 0;
+    /* //thay the hinh nen */
+    isolation: isolate;
+  }
+  #lienhe-header::after{
+    content: '';
+    position: absolute;
+    /* di chuyen ra phia sau text */
+    z-index: -1;
+    background-image:linear-gradient(rgba(94, 88, 88, 0.5), rgba(104, 98, 98, 0.5)),  url('../img/lienhe/hinh-anh-thu-cung.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    /* position :0*/
+    inset: 0;
+  }  
 
 footer a i {
     margin: 0 6px;

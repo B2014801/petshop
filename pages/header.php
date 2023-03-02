@@ -1,6 +1,12 @@
 <?php
-
+// xu ly dang ky
 // session_start();
+if(isset($_GET['action'])&&$_GET['action']=='dangxuat'){
+    unset($_SESSION['dangnhap']);
+    unset($_SESSION['ktradangnhap']);
+    header('Location:index.php');
+    exit();
+  }
 if(isset($_POST['dangky'])){
     $hoten=$_POST['hoten'];
     $email=$_POST['email'];
@@ -16,7 +22,7 @@ if(isset($_POST['dangky'])){
         header("Location:index.php");
     }
 }
-
+// xu ly dang nhap
     if(isset($_POST['dangnhap'])){
     $email=$_POST['email'];
     $password=$_POST['matkhau'];
@@ -24,8 +30,18 @@ if(isset($_POST['dangky'])){
     setcookie('email',$email,time()+(84000*7));
     setcookie('matkhau',$password,time()+(84000*7));
     }
-    
-    $sql="SELECT * FROM tbl_taikhoan where email='$email' and matkhau='$password'";
+    if(substr($email,0,5)=='admin'){
+        $sql="SELECT ten_admin FROM tbl_admin where email='$email' and matkhau='$password'"; 
+        $sql_admin=mysqli_query($mysqli,$sql);
+        $count=mysqli_num_rows($sql_admin);
+        if($count>0){
+            header('Location:admincp/');
+            $row = mysqli_fetch_array($sql_admin);
+            $_SESSION['tendangnhapadmin']=$row['ten_admin'];
+    }
+    }
+    else{
+    $sql="SELECT tenkhachhang,id_taikhoan FROM tbl_taikhoan where email='$email' and matkhau='$password'";
     $sql_mk=mysqli_query($mysqli,$sql);
     $count=mysqli_num_rows($sql_mk);
     if($count>0){
@@ -34,16 +50,9 @@ if(isset($_POST['dangky'])){
         $_SESSION['dangnhap']= $row['tenkhachhang'];//de hien thi thong tin dang nhap
         $_SESSION['ktradangnhap']= $row['id_taikhoan']; // kiem tra co dang nhap thi them vao tbl_giohang
     }
-    else{
+    }
+    if(!isset($_SESSION['dangnhap'])){
         echo '<script> alert("Tài khoản hoặc mật khẩu không đúng.Làm ơn đăng nhập lại."); </script>';
     }
-}
-?>
-<?php
-if(isset($_GET['action'])&&$_GET['action']=='dangxuat'){
-  echo "<script>alert('trung')</script>";
-  unset($_SESSION['dangnhap']);
-  header('Location:index.php');
-  exit();
 }
 ?>

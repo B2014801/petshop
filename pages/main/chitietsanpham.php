@@ -23,16 +23,19 @@
             <div class="row">
                 <h2 class="text-danger text-uppercase"><?php echo  $row['giasp'].'₫' ?></h2>
             </div>
-            <div class="mt-4 row">
+            <div class="mt-4">
                     <div class="d-flex">
-                        <label class="text-uppercase d-inline mt-2" for="">Số lượng:</label>
+                        <label class=" d-inline mt-2" for="">Số lượng:</label>
                         <div class="add-minus  d-flex mx-1">
                           <button type="text" class="minus-sp congtru  bg-light border border-light-subtle" id="minus-sp">-</button>
                           <input class="text-center bg-light border border-light-subtle" type="text" name="amount" id="amount" size="2" value="1" style="outline: none;">
                           <button class="plus-sp congtru bg-light border border-light-subtle" id="plus-sp">+</button>         
                         </div>
                     </div>
-                    <div class="d-flex mt-5">
+                    <div class="mt-3">
+                      <label for="">Kho: <?php echo $row['soluongsp'] > 0 ? $row['soluongsp']: '<span class="text-danger">sản phẩm hiện đang hết hàng</span>'; ?></label>
+                    </div>
+                    <div class="d-flex mt-3">
                         <button class="btn btn-lg btn-danger">Mua hàng</button>
                         <button class="btn btn-lg btn-primary text-white ms-2">Thêm vào giỏ</button>
                     </div>
@@ -91,9 +94,10 @@
                   <b>Lưu tên và email của tôi </b>       
                 </div>
                 <div class="col-12 pl-0">
-                  <button class="btn-lg btn-primary" type="submit">GỬI ĐI</button>
+                  <button class="btn btn-primary" type="submit">GỬI ĐI</button>
                 </div>
             </div>
+
           </div>
         </div>
       </div>

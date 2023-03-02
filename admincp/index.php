@@ -13,10 +13,10 @@
     <title>Admin</title>
 </head>
 <?php 
-    session_start();
-    if(!isset($_SESSION['dangnhap'])){
-        header('location:login.php');
-    }
+    // session_start();
+    // if(!isset($_SESSION['dangnhap'])){
+    //     header('location:login.php');
+    // }
 ?>
 <body>
     <?php

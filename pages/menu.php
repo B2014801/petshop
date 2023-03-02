@@ -21,7 +21,7 @@
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="index.php?quanly=gioithieu">Giới thiệu</a>
                     <a class="dropdown-item" href="index.php?quanly=tintuc">Tin tức</a>
-                    <a class="dropdown-item" href="#">Liên hệ</a>
+                    <a class="dropdown-item" href="index.php?quanly=lienhe">Liên hệ</a>
                   </div>
                 </li>
                 <?php while($row=mysqli_fetch_array($chon_tbl_danhmuc)){ ?>
@@ -46,10 +46,11 @@
                 </div>
               </form>
             </div>
+            
             <div class="d-inline text-white">
               <a href="index.php?quanly=giohang" class="text-white mr-3"><i class="fa-solid fa-cart-shopping "></i></a>
               <?php if(isset($_SESSION['dangnhap'])){ ?>
-                <?php echo isset($_SESSION['dangnhap']) ? $_SESSION['dangnhap'] :''; ?>
+                <?php echo isset($_SESSION['dangnhap']) ? '<a href="index.php?quanly=taikhoan">'.$_SESSION['dangnhap'].'</a>' : ''; ?>
                 <a href="index.php?action=dangxuat" class="text-decoration-none text-white" style="position: absolute; top:0;right:0;"><i class="fa-solid fa-arrow-right-from-bracket mr-3"></i>Thoát</a>
                 <?php }else{ ?>
               <a href="index.php?quanly=dangnhap" class="text-white text-decoration-none"><i class="fa-solid fa-user"></i>  |</a>

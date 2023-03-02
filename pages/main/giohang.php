@@ -1,4 +1,3 @@
-
 <div class="row mx-md-5 mx-1 my-2">
         <div><h1 class="text-center">Giỏ Hàng <?php echo isset($_SESSION['dangnhap']) ? "Của ".$_SESSION['dangnhap'] :''; ?></h1></div>
         <?php if(isset($_SESSION['ktradangnhap'])){ 
@@ -31,15 +30,19 @@
                 <td style="width: 400px;"><?php echo $row['tensp']?></td>
                 <td><span><?php echo $row['giasp'].' ₫' ?></span></td>
                 <td>
+                    <form id="form-id">
                     <div class="add-minus  d-flex mx-1">
-                        <button class="minus-sp  bg-light border border-light-subtle" id="minus-sp">-</button>
-                        <input class="text-center bg-light border border-light-subtle" type="text" name="amount" id="amount" size="2" value="<?php echo $row['soluong'] ?>" style="outline: none;">
-                        <button class="plus-sp bg-light border border-light-subtle" id="plus-sp">+</button>         
+                        <button class="minus-sp nosubmit  bg-light border border-light-subtle" id="minus-sp">-</button>
+                        <input class="text-center bg-light border border-light-subtle" data-id="<?php echo $row['id_sanpham'] ?>" type="text" name="amount" id="amount_<?php echo $row['id_sanpham'] ?>" size="2" value="<?php echo $row['soluong'] ?>" style="outline: none;">
+                        <button class="plus-sp nosubmit bg-light border border-light-subtle" id="plus-sp">+</button>         
                     </div>
                 </td>
                 <td><span style="white-space: nowrap;"><?php echo $tamtinh1sp.' ₫' ?></span></td>
             </tr>
+            
     <?php }?>
+    <tr><td colspan="6"><button id="submit-btn" type="submit" class="btn btn-primary my-1">cập nhật giỏ hàng</button></td> </tr>
+                    </form>
         </tbody>
       </table>
 
@@ -72,24 +75,53 @@
     </div>
     </div>
     <?php }else{echo '<h6 class="text-center mt-2">Giỏ hàng của bạn trống.</h6>';   }}else {echo '<h6 class="text-center mt-2">Giỏ hàng của bạn trống.</h6>';} ?>
-    <script>
-        function quantitychange(){
-    let amountElement = document.getElementById('amount');
-    let amount = amountElement.value;
-    amountElement.addEventListener("input", function(){
-        amount = amountElement.value;
-    })
-    document.getElementById('plus-sp').addEventListener("click", function(){
-        amount++; 
-        amountElement.value=amount;
-    })
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   
+<script>
+    var id, quantity;
+    $(document).ready(function() {
+  // Attach the click event to a parent element
+  $(".giohang-hienthi").on("click", ".minus-sp, .plus-sp", function(event) {
+    event.preventDefault();
+    var id = $(this).siblings("input").data("id");
+    var quantity = parseInt($(this).siblings("input").val());
+    if ($(this).hasClass("minus-sp")) {
+      if (quantity > 1) {
+        quantity--;
+      }
+    } else if ($(this).hasClass("plus-sp")) {
+      quantity++;
+    }
+  $(this).siblings("input").val(quantity);
+  });
 
-    document.getElementById('minus-sp').addEventListener("click", function(){
-        if(amount >1){
-            amount--;
-            amountElement.value=amount;
-        }
-    })
-}
-quantitychange();
-    </script>
+  // Attach the submit event to the form
+    $("#form-id").on("submit", function(event) {
+    event.preventDefault();
+    // Get all input values from the form
+    // var formData = $(this).serialize();
+    // Send AJAX request to update quantities
+    updateQuantities(id,quantity);
+  });
+
+  function updateQuantities(id,quantity) {
+    // alert(quantity);
+    $.ajax({
+       
+      url: "pages/main/xulygiohang.php",
+      type: "POST",
+      data: {
+                id_sanpham: id,
+                soluong: quantity
+            },
+      success: function(response) {
+        // alert('thanhcong');
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.log(textStatus, errorThrown);
+      }
+    });
+  }
+});
+
+</script>
