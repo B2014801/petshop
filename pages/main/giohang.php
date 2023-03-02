@@ -107,7 +107,6 @@
   function updateQuantities(id,quantity) {
     // alert(quantity);
     $.ajax({
-       
       url: "pages/main/xulygiohang.php",
       type: "POST",
       data: {
