@@ -16,14 +16,6 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Trang chủ</title>
 </head>
-<!-- <style>
-  #btn-back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: none;
-}
-</style> -->
 <body>
     <div class="wrapper">
         <?php
@@ -51,4 +43,12 @@ session_start();
 </script>
 <script src="./js/main.js"></script>
 </body>
+<!-- 
+    -validate form
+    cookie giỏ hàng
+    tăng giảm số lượng : done
+    feedback, coment, selloff
+    kiem tra du lieu da chèn hay chưa với thêm vào chi tiết đơn han chổ xữ lý đơn hàng
+    number format
+-->
 </html>

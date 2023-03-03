@@ -10,7 +10,7 @@
                     
             ?>
             <div class="col-sm-4 col-md-3 col-lg-3 col-6 mb-3">
-              <a href="index.php?sanpham=<?php echo $row['tensp']; ?>" class="text-dark text-decoration-none">
+              <a href="index.php?sanpham=<?php echo $row['id_sanpham']; ?>" class="text-dark text-decoration-none">
               <div class="card position-relative">
                 <img width="310px" height="250px" src="admincp/modules/quanlysp/uploads/<?php echo $row['hinhanhsp']; ?>"  class="card-img-top" alt="#">
                 <div class="card-body text-center">
@@ -20,5 +20,6 @@
               </div>
               </a>
             </div>
+            
             <?php }}else{echo '"<h6 class="text-center">Không tìm thấy sản phẩm phù hợp với yêu cầu của bạn</h6>"';} ?>
           </div>

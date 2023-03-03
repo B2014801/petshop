@@ -35,7 +35,7 @@
     <div class="row">
         <!-- <div class="col-4 d-flex justify-content-center align-items-center"> -->
         <div class="col-4 text-center">
-            <img class="rounded-circle d-block w-100" src="./pages/main/quanlytaikhoan/uploads/<?php echo $row['hinhanh'];  ?>"  alt="">
+            <img class="rounded-circle d-block w-100" src="./pages/main/quanlytaikhoan/uploads/<?php echo $row['hinhanh']!=""? $row['hinhanh']:'user.png';   ?>"  alt="">
             <label for="hinhanh" class="text-center bg-success text-white p-2 rounded mt-1">Tải ảnh lên</label>
             <input type="file" id="hinhanh" name="hinhanh" class="d-none" >
         </div>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="form-group">
                     <label for="">Email</label>
-                    <input type="text" class="form-control" value="<?php echo $row['email'] ?>" name="email" id="">
+                    <input type="text" class="form-control" value="<?php echo  $row['email'] ?>" name="email" id="">
                 </div>
                 <div class="form-group">
                         <label for="">Mật khẩu</label>

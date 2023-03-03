@@ -1,8 +1,9 @@
 <div class="row mx-md-5 mx-1 my-2">
         <div><h1 class="text-center">Giỏ Hàng <?php echo isset($_SESSION['dangnhap']) ? "Của ".$_SESSION['dangnhap'] :''; ?></h1></div>
         <?php if(isset($_SESSION['ktradangnhap'])){ 
+            $user=$_SESSION['ktradangnhap'];
              $sql="SELECT * FROM tbl_taikhoan a JOIN  tbl_giohang b ON 
-             a.id_taikhoan=b.id_taikhoan JOIN tbl_sanpham c ON b.id_sanpham=c.id_sanpham" ;//lay san pham tu 3 table hien thi len gio hang
+             a.id_taikhoan=b.id_taikhoan JOIN tbl_sanpham c ON b.id_sanpham=c.id_sanpham WHERE a.id_taikhoan=$user" ;//lay san pham tu 3 table hien thi len gio hang
              $sql_query=mysqli_query($mysqli,$sql);
              if(mysqli_num_rows($sql_query)>0){
         ?>
@@ -17,10 +18,15 @@
         <tbody>
         <?php
             $tamtinh=0;
+            $donhang=array();
             while($row=mysqli_fetch_array($sql_query)){
-            $gia=intval($row['giasp']);
-            $tamtinh1sp= $gia*$row['soluong'];
+            $gia = str_replace(".", "", $row['giasp']);
+            $gia=intval($gia);
+            $soluong=intval($row['soluong']);
+            $tamtinh1sp= $gia*$soluong;
             $tamtinh+=$tamtinh1sp;
+            
+            // $donhang=array_merge($donhang,(array('id_sanpham'=>(array('id_sanpham'=>$row['id_sanpham'])))));// luu lai id cua cac san pham de dat hang
         ?>
             <tr>
                <td><a href="pages/main/xulygiohang.php?id_sp_canxoa=<?php echo $row['id_sanpham']; ?>" class="text-dark text-decoration-none"><i class="fa-sharp fa-solid fa-xmark delete-purchase-icon" ></i> Xóa</a></td>
@@ -30,19 +36,25 @@
                 <td style="width: 400px;"><?php echo $row['tensp']?></td>
                 <td><span><?php echo $row['giasp'].' ₫' ?></span></td>
                 <td>
-                    <form id="form-id">
+                    <form id="form-id" action="pages/main/xulygiohang.php" method="POST" enctype="application/x-www-form-urlencoded">
                     <div class="add-minus  d-flex mx-1">
                         <button class="minus-sp nosubmit  bg-light border border-light-subtle" id="minus-sp">-</button>
-                        <input class="text-center bg-light border border-light-subtle" data-id="<?php echo $row['id_sanpham'] ?>" type="text" name="amount" id="amount_<?php echo $row['id_sanpham'] ?>" size="2" value="<?php echo $row['soluong'] ?>" style="outline: none;">
+                        <input class="text-center bg-light border border-light-subtle" data-id="<?php echo $row['id_sanpham'] ?>" type="text" name="<?php echo $row['id_sanpham'] ?>" id="amount_<?php echo $row['id_sanpham'] ?>" size="2" value="<?php echo $row['soluong'] ?>" style="outline: none;">
                         <button class="plus-sp nosubmit bg-light border border-light-subtle" id="plus-sp">+</button>         
                     </div>
                 </td>
-                <td><span style="white-space: nowrap;"><?php echo $tamtinh1sp.' ₫' ?></span></td>
+                <td><span style="white-space: nowrap;"><?php echo number_format($tamtinh1sp, 0, ',', '.').' ₫' ?></span></td>
             </tr>
             
-    <?php }?>
-    <tr><td colspan="6"><button id="submit-btn" type="submit" class="btn btn-primary my-1">cập nhật giỏ hàng</button></td> </tr>
-                    </form>
+    <?php
+            $donhang=array_merge($donhang,(array(array('id_sanpham'=>$row['id_sanpham'],'soluong'=>$row['soluong']))));// luu lai id cua cac san pham de dat hang
+     }
+            $_SESSION['tongtien-donhang']=$tamtinh;
+            $_SESSION['chitiet-donhang']=$donhang;
+            // print_r($_SESSION['chitiet-donhang']);
+    ?>
+    <tr><td colspan="6"><button id="submit-btn" type="submit" name="cap-nhat-gio-hang" class="btn btn-primary my-1">cập nhật giỏ hàng</button></td> </tr>
+                    
         </tbody>
       </table>
 
@@ -59,68 +71,42 @@
             <tbody>
                 <tr>
                     <td>Tạm tính</td>
-                    <td class="text-right"><span ><?php echo $tamtinh.' ₫' ?></span></td>
+                    <td class="text-right"><span ><?php echo number_format($tamtinh, 0, ',', '.').' ₫' ?></span></td>
                 </tr>
                 <tr>
                     <td>Tổng</td>
-                    <td class="text-right"><span><?php echo $tamtinh.' ₫' ?></span></td>
+                    <td class="text-right"><span name="tongtien"><?php echo number_format($tamtinh, 0, ',', '.').' ₫' ?></span></td>
                 </tr>
             </tbody>
         </table>
         <div>
-            <a class="btn btn-danger w-100 mt-2" role="button" href="<?php if(isset($_SESSION['dangnhap']) ){echo "dathang.php";} 
-            else {echo "index.php?quanly=dangnhap";} ?>">Đặt hàng
+        <a class="btn btn-danger w-100 mt-2" role="button" type="submit" href="<?php if(isset($_SESSION['dangnhap']) ){echo "pages/main/xulygiohang.php?action=dathang";} 
+            else {echo "index.php?quanly=dangnhap";} ?>" name="dathang">Đặt hàng
             </a>
+            </form>
         </div>
     </div>
     </div>
     <?php }else{echo '<h6 class="text-center mt-2">Giỏ hàng của bạn trống.</h6>';   }}else {echo '<h6 class="text-center mt-2">Giỏ hàng của bạn trống.</h6>';} ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    
-<script>
+    <script>
     var id, quantity;
     $(document).ready(function() {
-  // Attach the click event to a parent element
-  $(".giohang-hienthi").on("click", ".minus-sp, .plus-sp", function(event) {
-    event.preventDefault();
-    var id = $(this).siblings("input").data("id");
-    var quantity = parseInt($(this).siblings("input").val());
-    if ($(this).hasClass("minus-sp")) {
-      if (quantity > 1) {
-        quantity--;
-      }
-    } else if ($(this).hasClass("plus-sp")) {
-      quantity++;
-    }
-  $(this).siblings("input").val(quantity);
-  });
-
-  // Attach the submit event to the form
-    $("#form-id").on("submit", function(event) {
-    event.preventDefault();
-    // Get all input values from the form
-    // var formData = $(this).serialize();
-    // Send AJAX request to update quantities
-    updateQuantities(id,quantity);
-  });
-
-  function updateQuantities(id,quantity) {
-    // alert(quantity);
-    $.ajax({
-      url: "pages/main/xulygiohang.php",
-      type: "POST",
-      data: {
-                id_sanpham: id,
-                soluong: quantity
-            },
-      success: function(response) {
-        // alert('thanhcong');
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-        console.log(textStatus, errorThrown);
-      }
+        // Attach the click event to a parent element
+        $(".giohang-hienthi").on("click", ".minus-sp, .plus-sp", function(event) {
+            event.preventDefault();
+            id = $(this).siblings("input").data("id");
+            quantity = parseInt($(this).siblings("input").val());
+            if ($(this).hasClass("minus-sp")) {
+                if (quantity > 1) {
+                    quantity--;
+                }
+            } else if ($(this).hasClass("plus-sp")) {
+                quantity++;
+            }
+           
+            $(this).siblings("input").val(quantity);
+        });
     });
-  }
-});
-
 </script>

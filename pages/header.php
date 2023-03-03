@@ -17,7 +17,16 @@ if(isset($_POST['dangky'])){
     $sql_dangky=mysqli_query($mysqli,$sql);
 
     if(isset($sql_dangky)){
-        $_SESSION['dangnhap']=$hoten;
+        // khi dang ky thi cho khách hàng đăng nhập luôn, lưu ý là mỗi khách hàng có email khác nhau
+        $sql="SELECT tenkhachhang,id_taikhoan FROM tbl_taikhoan where email='$email'";
+        $sql_mk=mysqli_query($mysqli,$sql);
+        $count=mysqli_num_rows($sql_mk);
+        if($count>0){
+        
+        $row = mysqli_fetch_array($sql_mk);
+        $_SESSION['dangnhap']= $row['tenkhachhang'];//de hien thi thong tin dang nhap
+        $_SESSION['ktradangnhap']= $row['id_taikhoan']; // kiem tra co dang nhap thi them vao tbl_giohang
+    }
         echo "<script>alert('thành công');</script>";
         header("Location:index.php");
     }
