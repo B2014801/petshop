@@ -48,9 +48,14 @@
             </div>
             
             <div class="d-inline text-white">
+              <!-- // admin thi k hien thi gio hang -->
               <a href="index.php?quanly=giohang" class="text-white mr-3"><i class="fa-solid fa-cart-shopping "></i></a>
-              <?php if(isset($_SESSION['dangnhap'])){ ?>
-                <?php echo isset($_SESSION['dangnhap']) ? '<a href="index.php?quanly=taikhoan">'.$_SESSION['dangnhap'].'</a>' : ''; ?>
+              <!-- xu lu nếu là tài khoản admin thì vào trang admincp còn không vào tài khoản cá nhân -->
+              <?php if(isset($_SESSION['dangnhap'])||isset($_SESSION['tendangnhapadmin'])){ ?>
+                <?php
+                echo   
+                '<a href="'.(isset($_SESSION['tendangnhapadmin']) ? 'admincp' : 'index.php?quanly=taikhoan').'">
+                <i class="fa-solid fa-user mr-3 ml-2"></i></a>'; ?>
                 <a href="index.php?action=dangxuat" class="text-decoration-none text-white" style="position: absolute; top:0;right:0;"><i class="fa-solid fa-arrow-right-from-bracket mr-3"></i>Thoát</a>
                 <?php }else{ ?>
               <a href="index.php?quanly=dangnhap" class="text-white text-decoration-none"><i class="fa-solid fa-user"></i>  |</a>
@@ -59,7 +64,7 @@
             </div>
             </div>
           </nav>
-            
+                  <?php  ?>
           <div class="collapse navbar-collapse navbar navbar-expand-lg bg-dark   py-1 " id="navbarNavDropdown">
             <ul class="navbar-nav ">
                <form action="index?search=timkiem" class="form-inline my-2 my-lg-0 bg-white border-0 rounded p-1" method="GET">

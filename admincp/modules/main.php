@@ -29,6 +29,12 @@
         if($tam=="quanlyhieusanpham" && $query=='suahieusanpham'){
             include('modules/quanlyhieusp/sua.php');
         }
+        if($tam=="quanlydonhang"&&$query=='hienthi'){
+            include('modules/quanlydonhang/lietke.php');
+        }
+        if($tam=="quanlydonhang"&&$query=='suadonhang'){
+            include('modules/quanlydonhang/sua.php');
+        }
         // else{
         //     include('modules/dashboard.php');
         // }

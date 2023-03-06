@@ -46,9 +46,10 @@ session_start();
 <!-- 
     -validate form
     cookie giỏ hàng
-    tăng giảm số lượng : done
     feedback, coment, selloff
     kiem tra du lieu da chèn hay chưa với thêm vào chi tiết đơn han chổ xữ lý đơn hàng
     number format
+    tinh giản trang xử lý đơn hàng chổ cộng mảng
+    có dấu tích mới cho đặt hàng
 -->
 </html>

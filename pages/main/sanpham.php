@@ -20,5 +20,5 @@
               </div>
               </a>
             </div>
-            <?php }}else{echo '<h6 class="text-center mt-3">"Thú cưng hiện đang hết hàng"</h6>';} ?>
+            <?php }}else{echo '<h6 class="text-center mt-3">"Sản phẩm hiện đang hết hàng"</h6>';} ?>
           </div>

@@ -1,5 +1,6 @@
 <?php
     session_start();
+    if(isset($_SESSION['dangnhap'])||isset($_SESSION['tendangnhapadmin'])){
     $mysqli = new mysqli("localhost","root","","petshop");
     if(isset($_SESSION['ktradangnhap'])){
         //them san pham vao gio hang
@@ -24,13 +25,15 @@
     }
     
     }
-// xu ly don hang
+// xu ly don hang sử dụng session
 if(isset($_GET['action'])&&$_GET['action']=='dathang'){
 if(isset($_SESSION['tongtien-donhang'])&&isset($_SESSION['chitiet-donhang'])){
     $tongtien_dh=$_SESSION['tongtien-donhang'];
     $user=$_SESSION['ktradangnhap'];
-    $capnhat_donhang="INSERT INTO tbl_donhang(tong_tien,id_taikhoan) VALUE ('$tongtien_dh','$user')";
-    mysqli_query($mysqli,$capnhat_donhang);
+    $hinhthuc=$_POST['paymentMethod'];
+
+    $capnhat_donhang="INSERT INTO tbl_donhang(tong_tien,id_taikhoan,trangthai_donhang,hinhthuc_thanhtoan) VALUE ('$tongtien_dh','$user',0,'$hinhthuc')";
+    mysqli_query($mysqli,$capnhat_donhang);// thêm đơn hàng vào tbl đơn hàng
     $capnhat_chitiet_donhang;
     $max=mysqli_query($mysqli,"select max(id_donhang) from tbl_donhang");
 	$row=mysqli_fetch_array($max);
@@ -39,8 +42,9 @@ if(isset($_SESSION['tongtien-donhang'])&&isset($_SESSION['chitiet-donhang'])){
         mysqli_query($mysqli,$capnhat_chitiet_donhang);
     }
     unset($_SESSION['tongtien-donhang']);
-    unset($_SESSION['chitiet-donhang']);
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    // unset($_SESSION['chitiet-donhang']);
+    // header('Location: ' . $_SERVER['HTTP_REFERER']);
+    header('Location:../../index.php?goiysp');
 }
 }
 if(isset($_POST['cap-nhat-gio-hang'])){
@@ -55,6 +59,9 @@ if(isset($_POST['cap-nhat-gio-hang'])){
         mysqli_query($mysqli,$sql);
     }
     header('Location: ' . $_SERVER['HTTP_REFERER']);
-}   
-
+}
+    }
+else{
+    header('Location:../../index.php?quanly=dangnhap');
+}
 ?>

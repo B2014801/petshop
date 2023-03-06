@@ -1,12 +1,14 @@
 <?php
-// xu ly dang ky
-// session_start();
+
+// xu ly dang xuat
 if(isset($_GET['action'])&&$_GET['action']=='dangxuat'){
     unset($_SESSION['dangnhap']);
     unset($_SESSION['ktradangnhap']);
+    unset($_SESSION['tendangnhapadmin']);
     header('Location:index.php');
     exit();
   }
+// xu ly dang ky
 if(isset($_POST['dangky'])){
     $hoten=$_POST['hoten'];
     $email=$_POST['email'];
@@ -44,9 +46,10 @@ if(isset($_POST['dangky'])){
         $sql_admin=mysqli_query($mysqli,$sql);
         $count=mysqli_num_rows($sql_admin);
         if($count>0){
-            header('Location:admincp/');
+            header('Location:index.php');
             $row = mysqli_fetch_array($sql_admin);
             $_SESSION['tendangnhapadmin']=$row['ten_admin'];
+            // $_SESSION['ktradangnhap']=$row['id_taikhoan'];
     }
     }
     else{

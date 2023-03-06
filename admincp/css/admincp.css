@@ -5,3 +5,11 @@
 .navbar >li:hover{
     background-color: pink;
 }
+a{
+    text-decoration: none !important;
+    color: #141414;
+}
+a:hover{
+    background-color: pink;
+    color:  #141414;
+}

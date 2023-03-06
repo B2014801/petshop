@@ -16,6 +16,9 @@
       if($tam=='taikhoan'){
         include('main/taikhoan.php');
       }
+      if($tam=='gioithieu'){
+        include('main/gioithieu.php');
+      }
       if($tam=='lienhe'){
         include('main/lienhe.php');
       }
@@ -31,8 +34,11 @@
       if(isset($_GET['search_query'])){
         include('main/timkiemsanpham.php');
       }
+      if(isset($_GET['goiysp'])){
+        include('main/goiysp.php');
+      }
       // can sua
-      if($tam==""&&!isset($_GET['danhmuc'])&&!isset($_GET['sanpham'])&&!isset($_GET['search_query'])){
+      if($tam==""&&!isset($_GET['danhmuc'])&&!isset($_GET['sanpham'])&&!isset($_GET['search_query'])&&!isset($_GET['goiysp'])){
         include('main/index.php');
       }
       ?>
