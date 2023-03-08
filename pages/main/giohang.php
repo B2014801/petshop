@@ -37,7 +37,7 @@
                 <td><span><?php echo $row['giasp'].' ₫' ?></span></td>
                 <td>
                     <form id="form-id" action="pages/main/xulygiohang.php" method="POST" enctype="application/x-www-form-urlencoded">
-                    <div class="add-minus  d-flex mx-1">
+                    <div class="add-minus  d-flex mx-1 minus-and-plus">
                         <button class="minus-sp nosubmit  bg-light border border-light-subtle" id="minus-sp">-</button>
                         <input class="text-center bg-light border border-light-subtle" data-id="<?php echo $row['id_sanpham'] ?>" type="text" name="<?php echo $row['id_sanpham'] ?>" id="amount_<?php echo $row['id_sanpham'] ?>" size="2" value="<?php echo $row['soluong'] ?>" style="outline: none;">
                         <button class="plus-sp nosubmit bg-light border border-light-subtle" id="plus-sp">+</button>         
@@ -82,23 +82,28 @@
         <div>
             </form>
         </div>
+        <?php
+            $sql="SELECT * FROM tbl_taikhoan WHERE id_taikhoan='$user'";
+            $tbl_taikhoan=mysqli_query($mysqli,$sql);
+            $row=mysqli_fetch_array($tbl_taikhoan);
+        ?>
         <form action="pages/main/xulygiohang.php?action=dathang" method="POST" class="mt-2">
             <div class="form-inline ">
                 <div class="form-group my-1 col-sm-6 pl-md-0 pl-0  ">
                     <label for="form-check-label"><b>Tên</b></label>
-                    <input type="text" name="hoten" class="form-control w-100 mt-1" placeholder="Nhập tên của bạn">
+                    <input type="text" name="hoten" value="<?php echo $row['tenkhachhang'] ?>" class="form-control w-100 mt-1" placeholder="Nhập tên của bạn">
                 </div>
                 <div class="form-group my-1 col-sm-6 pr-md-0 pr-sm-0 pl-0 ">
                     <label for="form-check-label"><b>Số điện thoại</b></label>
-                    <input type="text" class="form-control w-100 mt-1" placeholder="Nhập Email của bạn">
+                    <input type="text" value="<?php echo $row['so_dien_thoai'] ?>" class="form-control w-100 mt-1" placeholder="Nhập Email của bạn">
                 </div>
                 <div class="form-group my-1 col-sm-12 pr-md-0 pr-sm-0 pl-0 ">
                     <label for="form-check-label"><b>Email</b></label>
-                    <input type="text" class="form-control w-100 mt-1" placeholder="Nhập Email của bạn">
+                    <input type="text" value="<?php echo $row['email'] ?>" class="form-control w-100 mt-1" placeholder="Nhập Email của bạn">
                 </div>
                 <div class="form-group my-1 col-sm-12 pr-md-0 pr-sm-0 pl-0 ">
                     <label for="form-check-label"><b>Địa chỉ nhận hàng *</b></label>
-                    <input type="text" class="form-control w-100 mt-1" placeholder="Nhập Email của bạn">
+                    <input type="text" value="<?php echo $row['diachi'] ?>" class="form-control w-100 mt-1" placeholder="Nhập Email của bạn">
                 </div>
                
                 <div class="accordion" id="accordionPayment">
@@ -141,24 +146,3 @@
     </div>
     <?php }else{echo '<h6 class="text-center mt-2">Giỏ hàng của bạn trống.</h6>';   }}else {echo '<h6 class="text-center mt-2">Giỏ hàng của bạn trống.</h6>';} ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-   
-    <script>
-    var id, quantity;
-    $(document).ready(function() {
-        // Attach the click event to a parent element
-        $(".giohang-hienthi").on("click", ".minus-sp, .plus-sp", function(event) {
-            event.preventDefault();
-            id = $(this).siblings("input").data("id");
-            quantity = parseInt($(this).siblings("input").val());
-            if ($(this).hasClass("minus-sp")) {
-                if (quantity > 1) {
-                    quantity--;
-                }
-            } else if ($(this).hasClass("plus-sp")) {
-                quantity++;
-            }
-           
-            $(this).siblings("input").val(quantity);
-        });
-    });
-</script>

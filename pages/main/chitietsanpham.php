@@ -1,11 +1,30 @@
 <?php
+  if(isset($_SESSION['ktradangnhap'])){
+    //them san pham vao gio hang
+    if(isset($_POST['themvaogio'])){
+    if(isset($_GET['sanpham'])){
+    $user=$_SESSION['ktradangnhap'];
+    $id_sanpham=$_GET['sanpham'] ?? '';
+    $soluong=$_POST['soluong'];
+    $sql="  INSERT INTO tbl_giohang (id_taikhoan, id_sanpham,soluong)
+            SELECT '$user', '$id_sanpham','$soluong' FROM DUAL
+            WHERE NOT EXISTS (SELECT id_taikhoan, id_sanpham FROM tbl_giohang 
+            WHERE id_taikhoan = '$user' AND id_sanpham = '$id_sanpham')"; //kiem tra san pham chưa co trong gio hàng thì thêm vô
+    mysqli_query($mysqli,$sql);
+    // hien thi thong bao them thanh cong can lay ten san pham
+    $sql="SELECT tensp FROM tbl_sanpham where id_sanpham='".$_GET['sanpham']."'";
+    $sql_sanpham=mysqli_query($mysqli,$sql);
+    $row = mysqli_fetch_array($sql_sanpham);
+    echo '<div class="container"><h5 class="text-left my-2" style ="color:#37e32a;"><i class="fa-solid fa-check"></i>'.$row['tensp'].' đã được thêm vào giỏ hàng</h5></div>';
+}}}
+  //hien thi chi tiet sanpham
   $sql="SELECT * FROM tbl_sanpham where id_sanpham='".$_GET['sanpham']."'";
   $sql_sanpham=mysqli_query($mysqli,$sql);
   while($row = mysqli_fetch_array($sql_sanpham)){
 ?>
 <section class="mx-5">
   <section>
-    <div class="row my-3">
+    <div class="row mb-3">
       <div class="col-md-5 col-12">
         <div class="card text-center border-0">
           <div class="mt-2" style="text-align: left;">
@@ -15,9 +34,10 @@
           </div>
         </div>
       </div>
-        <div class="col-md-7 col-12 pl-0">
+        <div class="col-md-7 col-12 pl-0 ">
             <div class="row">
-        <form action="pages/main/xulygiohang.php?id_sp_canthem=<?php echo $row['id_sanpham']; ?>" method="POST" >
+        <!-- <form  action="pages/main/xulygiohang.php?id_sp_canthem=<?php  echo $row['id_sanpham']; ?>" method="POST"> -->
+        <form  action="" method="POST">
                 <h2 class="text-uppercase"><?php  echo $row['tensp'] ?></h2>
             </div>
             <div class="row">
@@ -26,9 +46,9 @@
             <div class="mt-4">
                     <div class="d-flex">
                         <label class=" d-inline mt-2" for="">Số lượng:</label>
-                        <div class="add-minus  d-flex mx-1">
+                        <div class="add-minus  d-flex mx-1 minus-and-plus">
                           <button type="text" class="minus-sp congtru  bg-light border border-light-subtle" id="minus-sp">-</button>
-                          <input class="text-center bg-light border border-light-subtle" type="text" name="amount" id="amount" size="2" value="1" style="outline: none;">
+                          <input class="text-center bg-light border border-light-subtle" type="text" name="soluong" id="amount" data-id="<?php echo $row['id_sanpham']?>" size="2" value="1" style="outline: none;">
                           <button class="plus-sp congtru bg-light border border-light-subtle" id="plus-sp">+</button>         
                         </div>
                     </div>
@@ -38,7 +58,7 @@
                     <div class="mt-3"><p><b>Lưu ý</b>: Giá sản phẩm có thể thay đổi theo từng thời điểm. <span class="text-primary font-weight-bold">Kết Bạn Zalo</span> hoặc <span class="text-danger font-weight-bold">Gọi Hotline</span> để xem thêm hình ảnh/video chi tiết.</p></div>
                     <div class="d-flex mt-3">
                         <button class="btn btn-lg btn-danger">Mua hàng</button>
-                        <button class="btn btn-lg btn-primary text-white ms-2">Thêm vào giỏ</button>
+                        <button class="btn btn-lg btn-primary text-white ms-2" type="submit" name="themvaogio">Thêm vào giỏ</button>
                     </div>
         </form>
             </div>
@@ -75,12 +95,13 @@
         </h2>
         <div id="flush-collapseTwo" class="accordion-collapse collapse " aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
           <div class="accordion-body mt-3">
-            <h5 class="text-center">Nhận xét của bạn về <?php echo $row['tensp']  ?></h5>
-            <div class="form-group">
+            <h5 class="text-center">Nhận xét về <?php echo $row['tensp']  ?></h5>
+            <?php }?>
+            <!-- <div class="form-group">
               <label class="form-check-label" for=""><b>Nhận xét *</b></label>
               <textarea class="form-control" name="" id="" cols="30" rows="6"></textarea>
             </div>
-            <?php }?>
+           
             <div class="form-inline ">
                 <div class="form-group col-sm-6 pl-md-0 pl-0  ">
                   <label for="form-check-label"><b>Tên</b></label>
@@ -97,8 +118,80 @@
                 <div class="col-12 pl-0">
                   <button class="btn btn-primary" type="submit">GỬI ĐI</button>
                 </div>
-            </div>
+            </div> -->
+            <?php
+              $id_sanpham=$_GET['sanpham'];
+              $sql="SELECT * FROM tbl_binhluan a JOIN tbl_taikhoan b ON a.id_taikhoan=b.id_taikhoan  WHERE a.id_sanpham='$id_sanpham'";
+              $binhluan=mysqli_query($mysqli,$sql);
+              while($row=mysqli_fetch_array($binhluan)){
+            ?>
+            <div class="card-comment w-100">
+              <div class="d-flex">
+                  <div>
+                      <img src="./pages/main/quanlytaikhoan/uploads/<?php echo $row['hinhanh']!=''? $row['hinhanh'] :'user.png' ?>" width="40" class="rounded-circle mt-2">
+                  </div>
+                  <div class="col-10">
+                      <div class="comment-box">
+                          <h6><?php echo $row['tenkhachhang'] ?></h6>
+                          <div class="rating-other-user  d-inline-block w-100"> 
+                              <?php for($i=0;$i<$row['so_sao'];$i++){ ?>
+                                  <i class="fa-solid fa-star" style="color: #ff0000;"></i>
+                              <?php }?>
+                              <?php for($i=0;$i<5-$row['so_sao'];$i++){ ?>
+                                  <i class="fa-sharp fa-regular fa-star" style="color: #ff0000;"></i>
+                              <?php }?>
+                          </div>
+                          <p class="mb-0"><?php echo $row['ngay_binhluan'] ?></p>
+                          <p class="mb-0"><?php echo $row['noidung'] ?></p>
+                      </div>
+                  </div>
+              </div>
+          </div>
 
+          <?php }?>
+            <form action="pages/main/binhluan.php?id_sanpham=<?php echo $_GET['sanpham'] ?>" method="POST" >
+            <div class="card-comment">
+              <div class="d-flex">
+                <?php
+                
+                 ?>
+                  <div>
+                      <img src="./pages/main/quanlytaikhoan/uploads/<?php
+                        // neu khong co hinh anh (khong dang nhap thi hien thi hinh anh mac dinh)
+                        if (isset($_SESSION['ktradangnhap'])) {
+                        $sql2="SELECT * FROM tbl_taikhoan where id_taikhoan='".$_SESSION['ktradangnhap']."'";
+                        $sth=mysqli_query($mysqli,$sql2);
+                        $row2=mysqli_fetch_array($sth);
+                        echo $row2['hinhanh']!="" ? $row2['hinhanh']:'user.png';   }else echo 'user.png'?>" 
+                        width="70" class="rounded-circle mt-2">
+                  </div>
+                  <div class="col-10">
+                      <div class="comment-box ml-2">
+                          <h4>Thêm bình luận</h4>
+                          <div class="rating"> 
+                              <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
+                              <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> 
+                              <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
+                              <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
+                              <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                          </div>
+                          <div class="comment-area">
+                              <textarea class="form-control" name="noidung" placeholder="Bạn cảm thấy sản phẩm này thế nào?" rows="3"></textarea>
+                          </div>
+                          <div class="comment-btns mt-2">
+                              <!-- <div class="row"> -->
+                                  <!-- <div class="col-6"> -->
+                                      <div class="text-left">
+                                      <button class="btn btn-success" name="thembinhluan" type="submit">GỬI</button>      
+                                      </div>
+                                  <!-- </div> -->
+                              <!-- </div> -->
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          </form>
           </div>
         </div>
       </div>
@@ -114,36 +207,3 @@
     </div>
   </section>
 </section>
-<script>
-  function quantitychange(){
-    let amountElement = document.getElementById('amount');
-    let amount = amountElement.value;
-    amountElement.addEventListener("input", function(){
-        amount = amountElement.value;
-    })
-    document.getElementById('plus-sp').addEventListener("click", function(){
-        amount++; 
-        amountElement.value=amount;
-    })
-
-    document.getElementById('minus-sp').addEventListener("click", function(){
-        if(amount >1){
-            amount--;
-            amountElement.value=amount;
-        }
-    })
-    console.log(1);
-}
-quantitychange();
-var minusBtn = document.getElementById("minus-sp");
-var plusBtn = document.getElementById("plus-sp");
-
-// Add event listeners to the buttons
-minusBtn.addEventListener("click", function(event) {
-  event.preventDefault();
-});
-
-plusBtn.addEventListener("click", function(event) {
-  event.preventDefault(); 
-});
-</script>

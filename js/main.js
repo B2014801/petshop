@@ -67,5 +67,22 @@ function checkdk(){
       input.type = "password";
     }
 }
+// cong tru san pham
+$(document).ready(function() {
+  // Attach the click event to a parent element
+  $(".minus-and-plus").on("click", ".minus-sp, .plus-sp", function(event) {
+      event.preventDefault();
+      quantity = parseInt($(this).siblings("input").val());
+      if ($(this).hasClass("minus-sp")) {
+          if (quantity > 1) {
+              quantity--;
+          }
+      } else if ($(this).hasClass("plus-sp")) {
+          quantity++;
+      }
+     
+      $(this).siblings("input").val(quantity);
+  });
+});
 
 

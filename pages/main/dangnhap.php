@@ -21,6 +21,7 @@
                 </div>
                 <div>
                     <button class="btn btn-info" name="dangnhap" type="submit">Đăng nhập</button>
+                    <a class="btn btn-info" href="index.php?quanly=dangky" role="button" class="btn btn-info">Tạo tài khoản</a>
                 </div>  
             </div>
             </form>

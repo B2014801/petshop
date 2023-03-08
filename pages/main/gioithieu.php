@@ -1,4 +1,4 @@
-<div class="container text-center">
+<div class="container text-center my-2">
             <h1 class="text-center">Giới thiệu về pet shop</h1>
             <p>Trang web thú cưng độc đáo được làm bởi sinh viên của đại học cần thơ, đa dạng các loại thú cưng </p>
             <img src="img/gioithieu/bia1.jpeg" alt="">
@@ -6,5 +6,4 @@
             <img src="img/gioithieu/bia2.jpeg" alt="">
             <p>Bên cạnh đó chúng tôi cũng bán kèm đa dạng các loại phụ kiện dành cho thú cưng của bạn</p>
             <img src="img/gioithieu/bia3.jpeg" alt="">
-            
 </div>
