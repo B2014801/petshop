@@ -22,6 +22,9 @@
       if($tam=='lienhe'){
         include('main/lienhe.php');
       }
+      if($tam=='thanhtoan'){
+        include('main/thanhtoan.php');
+      }
       if(isset($_GET['danhmuc'])&&!isset($_GET['hieusanpham'])){
         include('main/danhmuc.php');
       }

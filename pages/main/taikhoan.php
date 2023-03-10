@@ -65,6 +65,17 @@
                 <button class="w-100 btn btn-success"  name="capnhatthongtin" type="submit">Cập nhật</button>
                 </div>
             </form>
-        </div>
-    </div>
+</div>
+<hr>
+<div>
+    <h3 class="text-center text-uppercase">Lịch sử mua hàng</h3>
+    <?php
+        $user=$_SESSION['ktradangnhap'];
+        $sql="SELECT * FROM   tbl_donhang b JOIN tbl_chitietdonhang a ON a.id_donhang=b.id_donhang JOIN tbl_sanpham c ON a.id_sanpham=c.id_sanpham WHERE b.id_taikhoan='$user' ";
+        
+        $lich_su_mua=mysqli_query($mysqli,$sql);
+        while($row=mysqli_fetch_array($lich_su_mua)){
+    ?>
+    
+    <?php }?>
 </div>

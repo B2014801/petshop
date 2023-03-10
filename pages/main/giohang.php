@@ -80,69 +80,13 @@
             </tbody>
         </table>
         <div>
+            
             </form>
         </div>
-        <?php
-            $sql="SELECT * FROM tbl_taikhoan WHERE id_taikhoan='$user'";
-            $tbl_taikhoan=mysqli_query($mysqli,$sql);
-            $row=mysqli_fetch_array($tbl_taikhoan);
-        ?>
-        <form action="pages/main/xulygiohang.php?action=dathang" method="POST" class="mt-2">
-            <div class="form-inline ">
-                <div class="form-group my-1 col-sm-6 pl-md-0 pl-0  ">
-                    <label for="form-check-label"><b>Tên</b></label>
-                    <input type="text" name="hoten" value="<?php echo $row['tenkhachhang'] ?>" class="form-control w-100 mt-1" placeholder="Nhập tên của bạn">
-                </div>
-                <div class="form-group my-1 col-sm-6 pr-md-0 pr-sm-0 pl-0 ">
-                    <label for="form-check-label"><b>Số điện thoại</b></label>
-                    <input type="text" value="<?php echo $row['so_dien_thoai'] ?>" class="form-control w-100 mt-1" placeholder="Nhập Email của bạn">
-                </div>
-                <div class="form-group my-1 col-sm-12 pr-md-0 pr-sm-0 pl-0 ">
-                    <label for="form-check-label"><b>Email</b></label>
-                    <input type="text" value="<?php echo $row['email'] ?>" class="form-control w-100 mt-1" placeholder="Nhập Email của bạn">
-                </div>
-                <div class="form-group my-1 col-sm-12 pr-md-0 pr-sm-0 pl-0 ">
-                    <label for="form-check-label"><b>Địa chỉ nhận hàng *</b></label>
-                    <input type="text" value="<?php echo $row['diachi'] ?>" class="form-control w-100 mt-1" placeholder="Nhập Email của bạn">
-                </div>
-               
-                <div class="accordion" id="accordionPayment">
-                    <div>
-                        <div class="form-group" id="headingOne">
-                        <input class="form-check-input" type="checkbox" id="checkboxOne" data-toggle="collapse" data-target="#collapsetwo" aria-expanded="true" aria-controls="collapseOne">
-                        <label class="form-check-label" for="checkboxOne">Hình thức thanh toán</label>
-                        </div>
-
-                        <div id="collapsetwo" class="collapse p-3 bg-light" aria-labelledby="headingOne" data-parent="#accordionPayment">
-                        <div>
-                            <div class="form-group" id="headingTwo">
-                            <input class="form-check-input" value="khi nhận hàng" type="radio" name="paymentMethod" id="checkboxTwo">
-                            <label class="form-check-label" for="checkboxTwo">Thanh toán khi nhận hàng</label>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="form-group" id="headingThree">
-                            <input class="form-check-input" value="trực tuyến" type="radio" name="paymentMethod" id="checkboxThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true"> 
-                            <label class="form-check-label" for="checkboxThree">Thanh toán online</label>
-                            </div>
-                            <div id="collapseThree" class="collapse p-3 bg-light">
-                            <p>Thông tin tài khoản thụ hưởng của Pet shop. Sau khi chuyển khoản, xin vui lòng thông báo cho chúng tôi qua số điên thoại 0925 086 811 để được phục vụ nhanh nhất.</p>
-                            <p>Ngân hàng: <b>Agribank</b></p>
-                            <p>Số tài khoản: <b>076582640</b></p>
-                            <p>Tên tài khoản: <b>NGUYỄN QUỐC TRUNG</b></p>
-                            <div class="text-center">
-                            <img  src="img/thanhtoan/qr.jpg" alt="">
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        <button class="btn btn-danger w-100 mt-2" type="submit">Đặt hàng</button>
-        </form>
+        
+        <a class="btn btn-danger w-100 mt-2" role="button" href="index.php?quanly=thanhtoan" type="submit">Thanh toán</a>
     </div>
+    
     </div>
     <?php }else{echo '<h6 class="text-center mt-2">Giỏ hàng của bạn trống.</h6>';   }}else {echo '<h6 class="text-center mt-2">Giỏ hàng của bạn trống.</h6>';} ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
