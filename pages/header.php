@@ -13,11 +13,16 @@ if(isset($_POST['dangky'])){
     $hoten=$_POST['hoten'];
     $email=$_POST['email'];
     $matkhau=($_POST['matkhau']);
-    $diachi=$_POST['diachi'];
-
-    $sql="INSERT INTO tbl_taikhoan(tenkhachhang,email,matkhau,diachi) value('$hoten','$email','$matkhau','$diachi')";
+    
+    
+    $sql_check="SELECT email FROM tbl_taikhoan WHERE email='$email'";
+    if(mysqli_num_rows(mysqli_query($mysqli,$sql_check))>0){
+        echo "<script>alert('email đã tồn tại');</script>";
+    }
+    else{
+    $sql="INSERT INTO tbl_taikhoan(tenkhachhang,email,matkhau) value('$hoten','$email','$matkhau')";
     $sql_dangky=mysqli_query($mysqli,$sql);
-
+    
     if(isset($sql_dangky)){
         // khi dang ky thi cho khách hàng đăng nhập luôn, lưu ý là mỗi khách hàng có email khác nhau
         $sql="SELECT tenkhachhang,id_taikhoan FROM tbl_taikhoan where email='$email'";
@@ -28,10 +33,10 @@ if(isset($_POST['dangky'])){
         $row = mysqli_fetch_array($sql_mk);
         $_SESSION['dangnhap']= $row['tenkhachhang'];//de hien thi thong tin dang nhap
         $_SESSION['ktradangnhap']= $row['id_taikhoan']; // kiem tra co dang nhap thi them vao tbl_giohang
-    }
-        echo "<script>alert('thành công');</script>";
         header("Location:index.php");
     }
+        
+    }}
 }
 // xu ly dang nhap
     if(isset($_POST['dangnhap'])){

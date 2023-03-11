@@ -1,29 +1,33 @@
-<h6>Thêm sản phẩm</h6>
-<form action="modules/quanlysp/xuly.php"  method="POST" enctype="multipart/form-data">
+<form class="form-inline mb-2" action="" method="GET">
+    <h6 class="mr-3">Thêm sản phẩm</h6>
+    <div class="form-group ml-auto">
+    <input class="form-control mr-1" type="search" name="search_query" placeholder="tìm kiếm" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </div>
+</form>
+
+<form action="modules/quanlysp/xuly.php"  method="POST" enctype="multipart/form-data" onsubmit="return ValidateFormSanPham()">
     <table class="table table-bordered">
         <tr>
             <td><label class="form-check-label mr-2"  for="">Tên sản phẩm</label></td>
-            <td><input class="form-control" name="tensp" type="text"></td>
+            <td><input class="form-control" id="tensp" name="tensp" type="text"></td>
         </tr>
-        <tr>
-            <td><label class="form-check-label mr-2"  for="">Mã sản phẩm</label></td>
-            <td><input class="form-control" name="masp" type="text"></td>
-        </tr>
-        <tr>
-            <td><Label class="form-check-label mr-2">Hình ảnh</Label></td>
-            <td><input name="hinhanhsp" type="file"></td>
-        </tr>
+       
         <tr>
             <td><label class="form-check-label mr-2"  for="">Giá sản phẩm</label></td>
-            <td><input class="form-control" name="giasp" type="text"></td>
+            <td><input class="form-control" id="giasp" name="giasp" type="text"></td>
         </tr>
         <tr>
             <td><label class="form-check-label mr-2"  for="">Số lượng</label></td>
-            <td><input class="form-control" name="soluongsp" type="text"></td>
+            <td><input class="form-control" id="soluongsp" name="soluongsp" type="text"></td>
         </tr>
         <tr>
             <td><label class="form-check-label mr-2"  for="">Mô tả</label></td>
-            <td><input class="form-control" name="motasp" type="text"></td>
+            <td><input class="form-control" id="motasp" name="motasp" type="text"></td>
+        </tr>
+        <tr>
+            <td><Label class="form-check-label mr-2">Hình ảnh</Label></td>
+            <td><input name="hinhanhsp" id="hinhanhsp" type="file"></td>
         </tr>
         <tr>
             <td>Hiệu sản phẩm</td>

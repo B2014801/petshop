@@ -25,14 +25,21 @@ function backToTop() {
       });
   }
 
-// dang ky 
-pass=document.querySelectorAll('.password-input');
+// validate dang ky 
+
+function ValidateDangKy(){
+pass=document.querySelector('#password-dangky');
+email=document.querySelector('#email');
+pass_laplai=document.querySelector('#password-dangky-laplai');
 hoten=document.querySelector('#hoten');
-function checkdk(){
     if(hoten.value==""){
         alert('Họ tên không được bỏ trống ');
         return false;
         }
+    if(email.value==""){
+      alert('Email không được bỏ trống ');
+      return false;
+      }
     if(pass.value==""){
         alert('Mật khẩu không được bỏ trống ')
         return false
@@ -41,7 +48,6 @@ function checkdk(){
         alert('Mật khẩu tối thiểu 6 ký tự')
         return false
     }
-
     else{
         let flag1=0,flag2=0;//kiem tra ky tu: flag1 so,flag2 là ky tu
         for(let i=0;i<pass.value.length;i++){
@@ -55,17 +61,45 @@ function checkdk(){
             alert('Mật khẩu phải có các ký tự và chữ số');
             return false
         }
-        else
-            alert('thành công')
+      
     }
+    if(pass.value!=pass_laplai.value){
+      alert('mật khẩu không khớp');
+      return false;
+    }
+    
+  }
+// validate form thanh toán 
+function ValidateFromThanhToanThongTin(){
+  let sdt=document.querySelector('#sdt');
+  let diachi=document.querySelector('#diachi');
 
-    }
-    function ShowPassword(input){
-    if (input.type === "password") {
-      input.type = "text";
-    } else{
-      input.type = "password";
-    }
+  if(sdt.value==''){
+    alert('vui lòng cập nhật số điện thoại');
+    return false;
+  }
+  if(diachi.value==''){
+    alert('vui lòng cập nhật địa chỉ nhận hàng');
+    return false;
+  }
+}
+// validate hinh thức thanh toán
+function ValidateFromThanhToanDonhang(){
+  let hinhthucthanhtoanmot=document.querySelector('#checkboxTwo');
+  let hinhthucthanhtoanhai=document.querySelector('#checkboxThree');
+  if(!hinhthucthanhtoanmot.checked && !hinhthucthanhtoanhai.checked){
+    alert('vui lòng chọn hình thức thanh toán');
+    return false;
+  }
+
+}
+
+function ShowPassword(input){
+  if (input.type === "password") {
+    input.type = "text";
+  } else{
+    input.type = "password";
+  }
 }
 // cong tru san pham
 $(document).ready(function() {

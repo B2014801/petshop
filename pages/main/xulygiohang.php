@@ -2,23 +2,30 @@
     session_start();
     if(isset($_SESSION['dangnhap'])||isset($_SESSION['tendangnhapadmin'])){
     $mysqli = new mysqli("localhost","root","","petshop");
-    if(isset($_SESSION['ktradangnhap'])){
         //them san pham vao gio hang
-    //     if(isset($_POST['themvaogio'])){
-    //     if(isset($_GET['id_sp_canthem'])){
-    //     $user=$_SESSION['ktradangnhap'];
-    //     $id_sanpham=$_GET['id_sp_canthem'] ?? '';
-    //     $soluong=$_POST['soluong'];
-    //     $sql="  INSERT INTO tbl_giohang (id_taikhoan, id_sanpham,soluong)
-    //             SELECT '$user', '$id_sanpham','$soluong' FROM DUAL
-    //             WHERE NOT EXISTS (SELECT id_taikhoan, id_sanpham FROM tbl_giohang 
-    //             WHERE id_taikhoan = '$user' AND id_sanpham = '$id_sanpham')"; //kiem tra san pham chưa co trong gio hàng thì thêm vô
-    //     mysqli_query($mysqli,$sql);
-
-    //     header('Location: ' . $_SERVER['HTTP_REFERER']);
-    //     exit();
-    // }}
-    // xoa san pham ra khoi gio hang
+        if(isset($_POST['themvaogio'])){
+            if(!isset($_SESSION['ktradangnhap'])){
+            header('Location : index.php?quanly=dangnhap');
+            }
+            if(isset($_SESSION['ktradangnhap'])){
+            $user=$_SESSION['ktradangnhap'];
+            $id_sanpham=$_GET['id_sanpham'] ?? '';
+            $soluong=$_POST['soluong'];
+            $sql="  INSERT INTO tbl_giohang (id_taikhoan, id_sanpham,soluong)
+                    SELECT '$user', '$id_sanpham','$soluong' FROM DUAL
+                    WHERE NOT EXISTS (SELECT id_taikhoan, id_sanpham FROM tbl_giohang 
+                    WHERE id_taikhoan = '$user' AND id_sanpham = '$id_sanpham')"; //kiem tra san pham chưa co trong gio hàng thì thêm vô
+            mysqli_query($mysqli,$sql);
+            // hien thi thong bao them thanh cong can lay ten san pham
+            $sql="SELECT tensp FROM tbl_sanpham where id_sanpham='$id_sanpham'";
+            $sql_sanpham=mysqli_query($mysqli,$sql);
+            $row = mysqli_fetch_array($sql_sanpham);
+            header('Location:../../index.php?sanpham='.$id_sanpham.'&&them-thanhcong');
+        }
+        }
+        
+    if(isset($_SESSION['ktradangnhap'])){
+    
     if(isset($_GET['id_sp_canxoa'])){
         mysqli_query($mysqli, "DELETE FROM tbl_giohang where id_sanpham='".$_GET['id_sp_canxoa']."' ");
         header('Location: ' . $_SERVER['HTTP_REFERER']);

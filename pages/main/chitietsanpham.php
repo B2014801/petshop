@@ -1,26 +1,12 @@
 <?php
-  if(isset($_SESSION['ktradangnhap'])){
-    //them san pham vao gio hang
-    if(isset($_POST['themvaogio'])){
-    if(isset($_GET['sanpham'])){
-    $user=$_SESSION['ktradangnhap'];
-    $id_sanpham=$_GET['sanpham'] ?? '';
-    $soluong=$_POST['soluong'];
-    $sql="  INSERT INTO tbl_giohang (id_taikhoan, id_sanpham,soluong)
-            SELECT '$user', '$id_sanpham','$soluong' FROM DUAL
-            WHERE NOT EXISTS (SELECT id_taikhoan, id_sanpham FROM tbl_giohang 
-            WHERE id_taikhoan = '$user' AND id_sanpham = '$id_sanpham')"; //kiem tra san pham chưa co trong gio hàng thì thêm vô
-    mysqli_query($mysqli,$sql);
-    // hien thi thong bao them thanh cong can lay ten san pham
-    $sql="SELECT tensp FROM tbl_sanpham where id_sanpham='".$_GET['sanpham']."'";
-    $sql_sanpham=mysqli_query($mysqli,$sql);
-    $row = mysqli_fetch_array($sql_sanpham);
-    echo '<div class="container"><h5 class="text-left my-2" style ="color:#37e32a;"><i class="fa-solid fa-check"></i>'.$row['tensp'].' đã được thêm vào giỏ hàng</h5></div>';
-}}}
+  
   //hien thi chi tiet sanpham
   $sql="SELECT * FROM tbl_sanpham where id_sanpham='".$_GET['sanpham']."'";
   $sql_sanpham=mysqli_query($mysqli,$sql);
   while($row = mysqli_fetch_array($sql_sanpham)){
+    if(isset($_GET['them-thanhcong'])){
+      echo '<div class="container ml-4"><h5 class="text-left my-2" style ="color:#37e32a;"><i class="fa-solid fa-check"></i>'.$row['tensp'].' đã được thêm vào giỏ hàng</h5></div>';
+    }
 ?>
 <section class="mx-5">
   <section>
@@ -36,8 +22,7 @@
       </div>
         <div class="col-md-7 col-12 pl-0 ">
             <div class="row">
-        <!-- <form  action="pages/main/xulygiohang.php?id_sp_canthem=<?php  echo $row['id_sanpham']; ?>" method="POST"> -->
-        <form  action="" method="POST">
+        <form  action="pages/main/xulygiohang.php?id_sanpham=<?php echo $row['id_sanpham']; ?>" method="POST">
                 <h2 class="text-uppercase"><?php  echo $row['tensp'] ?></h2>
             </div>
             <div class="row">

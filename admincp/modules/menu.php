@@ -16,6 +16,7 @@
     <li><a class="text-dark text-decoration-none" href="index.php?action=quanlyhieusanpham&query=themhieusanpham">Quản lý hiệu sản phẩm</a></li>
     <li><a class="text-dark text-decoration-none" href="index.php?action=quanlysanpham&query=themsanpham">Quản lý sản phẩm</a></li>
     <li><a class="text-dark text-decoration-none" href="index.php?action=quanlydonhang&query=hienthi">Quản lý đơn hàng</a></li>
+    <li><a class="text-dark text-decoration-none" href="index.php?action=quanlytaikhoan&query=hienthi">Quản lý tài khoản</a></li>
     <!-- <li><a class="text-dark text-decoration-none" href="index.php?action=quanlydanhmucbaiviet&query=themdanhmuc">Quản lý danh mục bài viết</a></li> -->
     <li><a class="text-dark text-decoration-none" href="index.php?action=dangxuat">Đăng xuất</a></li>
 </ul>

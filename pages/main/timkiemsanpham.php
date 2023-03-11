@@ -21,5 +21,5 @@
               </a>
             </div>
             
-            <?php }}else{echo '"<h6 class="text-center">Không tìm thấy sản phẩm phù hợp với yêu cầu của bạn</h6>"';} ?>
+            <?php }}else{echo '<h6 class="text-center mt-3">Không tìm thấy sản phẩm phù hợp với yêu cầu của bạn</h6>';} ?>
           </div>

@@ -18,9 +18,9 @@ if(isset($_POST['capnhatthongtin'])){
         $chon_tbl_taikhoan=mysqli_query($mysqli,$sql);
         $row=mysqli_fetch_array($chon_tbl_taikhoan);
 ?>
-<form action="" method="POST" class="mt-2">
-    <div class="container row mx-auto">
-    <div class="col-md-6 col-12 mb-2">
+    <div class="container row mx-auto mt-2">
+        <div class="col-md-6 col-12 mb-2">
+        <form action="" method="POST" onsubmit="return ValidateFromThanhToanThongTin()">
         <h3 class="col-12 pl-0">Thông tin thanh toán</h3>
         <div class="form-inline">
         <div class="form-group my-1 col-sm-6 pl-md-0 pl-0  ">
@@ -29,7 +29,7 @@ if(isset($_POST['capnhatthongtin'])){
         </div>
         <div class="form-group my-1 col-sm-6 pr-md-0 pr-sm-0 pl-0 ">
             <label for="form-check-label"><b>Số điện thoại</b></label>
-            <input type="text" name="sodienthoai" value="<?php echo $row['so_dien_thoai'] ?>" class="form-control w-100 mt-1" placeholder="Nhập Email của bạn">
+            <input type="text" id="sdt" name="sodienthoai" value="<?php echo $row['so_dien_thoai'] ?>" class="form-control w-100 mt-1" placeholder="Nhập Email của bạn">
         </div>
         </div>
         <div class="form-group my-1 col-sm-12 pr-md-0 pr-sm-0 pl-0 ">
@@ -38,13 +38,14 @@ if(isset($_POST['capnhatthongtin'])){
         </div>
         <div class="form-group my-1 col-sm-12 pr-md-0 pr-sm-0 pl-0 ">
             <label for="form-check-label"><b>Địa chỉ nhận hàng *</b></label>
-            <input type="text" name="diachi" value="<?php echo $row['diachi'] ?>" class="form-control w-100 mt-1" placeholder="Nhập Email của bạn">
+            <input type="text" id="diachi" name="diachi" value="<?php echo $row['diachi'] ?>" class="form-control w-100 mt-1" placeholder="Nhập Email của bạn">
         </div>
         
         
     <div><button class="btn btn-danger mt-2" name="capnhatthongtin" type="submit">Cập nhật</button></div>
-    </div>
 </form>
+</div>
+    
 
     <div class="col-md-6 col-12 mb-2 col" style="border: 2px solid blue;">
     <div  style="padding: 20px;">
@@ -78,7 +79,7 @@ if(isset($_POST['capnhatthongtin'])){
              </tr>
         </table>
         <div class="form-inline">
-        <form action="pages/main/xulygiohang.php?action=dathang" method="POST">
+        <form action="pages/main/xulygiohang.php?action=dathang" method="POST" onsubmit="return ValidateFromThanhToanDonhang();">
         <div class="accordion form-group col-12 pl-md-0" id="accordionPayment">
             <div>
                 <div class="form-group" id="headingOne">

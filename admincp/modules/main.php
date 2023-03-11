@@ -35,6 +35,15 @@
         if($tam=="quanlydonhang"&&$query=='suadonhang'){
             include('modules/quanlydonhang/sua.php');
         }
+        if($tam=="quanlytaikhoan"&&$query=='hienthi'){
+            include('modules/quanlytaikhoan/lietke.php');
+        }
+        if($tam=="timkiem"&&$query=='hienthi'){
+            include('modules/quanlytaikhoan/lietke.php');
+        }
+        if(isset($_GET['search_query'])){
+            include('modules/quanlysp/timkiem.php');
+        }
         // else{
         //     include('modules/dashboard.php');
         // }

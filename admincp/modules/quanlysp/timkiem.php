@@ -1,5 +1,8 @@
 <?php
-    $sql_lietke_sp='SELECT * FROM tbl_sanpham,tbl_hieusanpham where tbl_sanpham.id_hieusanpham=tbl_hieusanpham.id_hieusanpham';
+    $tensp=$_GET['search_query'];
+    // $sql_lietke_sp='SELECT * FROM tbl_sanpham,tbl_hieusanpham where tbl_sanpham.id_hieusanpham=tbl_hieusanpham.id_hieusanpham and tbl_sanpham.tensp LIKE "%'.$tensp.'" ';
+    $sql_lietke_sp='SELECT * FROM tbl_sanpham,tbl_hieusanpham where tbl_sanpham.id_hieusanpham=tbl_hieusanpham.id_hieusanpham and tbl_sanpham.tensp LIKE "%'.$tensp.'%" ';
+
     $query_lietke_sp=mysqli_query($mysqli,$sql_lietke_sp);
 ?>
 <h6>Liệt kê sản phẩm</h6>
@@ -7,6 +10,7 @@
         <tr>
             <th><label class="form-check-label mr-2"  for="">ID</label></th>
             <th><label class="form-check-label mr-2"  for="">Tên sản phẩm</label></th>
+            <th><label class="form-check-label mr-2"  for="">Mã sản phẩm</label></th>
             <th><label class="form-check-label mr-2"  for="">Hiệu sản phẩm</label></th>
             <th><label class="form-check-label mr-2"  for="">Hỉnh ảnh sản phẩm</label></th>
             <th><label class="form-check-label mr-2"  for="">Giá sản phẩm</label></th>
@@ -26,6 +30,7 @@
         <tr>
             <td><?php echo $row['id_sanpham'] ?></td>
             <td><?php echo $row['tensp'] ?></td>
+            <td><?php echo $row['masp'] ?></td>
             <td><?php echo $row['tenhieusp'] ?></td>
             <td class="text-center"><img src="modules/quanlysp/uploads/<?php echo $row['hinhanhsp']?>"  alt="" width="100px" height="60px"></td>
             <td><?php echo $row['giasp'] ?></td>

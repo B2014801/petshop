@@ -2,7 +2,7 @@
     $sql_lietke_donhang='SELECT * FROM tbl_donhang ';
     $query_lietke_donhang=mysqli_query($mysqli,$sql_lietke_donhang);
 ?>
-<h6>Liệt kê hiệu sản phẩm</h6>
+<h6>Liệt kê hiệu đơn hàng</h6>
 <table  class="table table-bordered">
         <tr>
             <th><label class="form-check-label mr-2"  for="">ID</label></th>

@@ -67,7 +67,7 @@
                   <?php  ?>
           <div class="collapse navbar-collapse navbar navbar-expand-lg bg-dark   py-1 " id="navbarNavDropdown">
             <ul class="navbar-nav ">
-               <form action="index?search=timkiem" class="form-inline my-2 my-lg-0 bg-white border-0 rounded p-1" method="GET">
+               <form action="" class="form-inline my-2 my-lg-0 bg-white border-0 rounded p-1" method="GET">
                   <div class="input-group">
                     <input class="border-0" name="keysearch" type="search" placeholder="Tìm kiếm..." aria-label="Search" style="outline: none; width: 90%;">
                     <button type="submit" name="timsanpham" class="border-0 bg-white" type="submit"><i class="fa-solid fa-magnifying-glass" ></i></button>
