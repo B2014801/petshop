@@ -42,10 +42,22 @@
             <div class="col-sm-4 col-md-3 col-lg-3 col-6 mb-3">
               <a href="index.php?sanpham=<?php echo $row['id_sanpham']; ?>" class="text-dark text-decoration-none">
               <div class="card position-relative">
+              <?php echo $row['giam_gia']>0 ? 
+              '<div class="selloff">
+                <h6 class="text-center m-1">'.$row['giam_gia'].'%</h6>
+              </div>': '' ?>
                 <img width="310px" height="250px" src="admincp/modules/quanlysp/uploads/<?php echo $row['hinhanhsp']; ?>"  class="card-img-top" alt="#">
                 <div class="card-body text-center">
                   <p class="mb-1"><?php echo $row['tensp']?> mã <?php echo $row['masp']?></p>
-                  <h5 class="card-title"><?php echo $row['giasp'].' ₫' ?></h5>
+                  <h5 class="card-title">
+                    <?php
+                    $gia = str_replace(".", "", $row['giasp']);
+                    $gia=intval($gia);
+                    $gia_sau_giam=$gia-($gia*intval($row['giam_gia']))/100;
+                    $gia_sau_giam= number_format($gia_sau_giam,0,'','.');
+                    echo $row['giam_gia']>0 ?  '<del style="opacity:0.5;margin-right: 6px;">'.$row['giasp'].' ₫ </del><bdi class="text-danger">'.$gia_sau_giam.' ₫</bdi>' : $row['giasp'].' ₫' 
+                    ?>
+                  </h5>
                 </div>
               </div>
               </a>
@@ -70,17 +82,27 @@
             <div class="col-sm-4 col-md-3 col-lg-3 col-6 mb-3">
               <a href="index.php?sanpham=<?php echo $row['id_sanpham']; ?>" class="text-dark text-decoration-none">
               <div class="card position-relative">
-              <div class="selloff">
-                <h6 class="text-center m-1">-2%</h6>
-              </div>
+              <?php echo $row['giam_gia']>0 ? 
+              '<div class="selloff">
+                <h6 class="text-center m-1">'.$row['giam_gia'].'%</h6>
+              </div>': '' ?>
                 <img width="310px" height="250px" src="admincp/modules/quanlysp/uploads/<?php echo $row['hinhanhsp']; ?>"  class="card-img-top" alt="#">
                 <div class="card-body text-center">
                   <p class="mb-1"><?php echo $row['tensp']?> mã <?php echo $row['masp']?></p>
-                  <h5 class="card-title"><del style="opacity:0.5;margin-right: 6px;">12.000.000 ₫ </del><bdi class="text-danger"><?php echo $row['giasp'].' ₫' ?></bdi></h5>
+                  <!-- hien thi giam gia neu ti le giam gia >0 -->
+                  <h5 class="card-title">
+                    <?php
+                    $gia = str_replace(".", "", $row['giasp']);
+                    $gia=intval($gia);
+                    $gia_sau_giam=$gia-($gia*intval($row['giam_gia']))/100;
+                    $gia_sau_giam= number_format($gia_sau_giam,0,'','.');
+                    echo $row['giam_gia']>0 ?  '<del style="opacity:0.5;margin-right: 6px;">'.$row['giasp'].' ₫ </del><bdi class="text-danger">'.$gia_sau_giam.' ₫</bdi>' : $row['giasp'].' ₫' 
+                    ?>
+                  </h5>
                 </div>
               </div>
               </a>
             </div>
             <?php } ?>
           </div>
-          <hr>
+          <hr> 

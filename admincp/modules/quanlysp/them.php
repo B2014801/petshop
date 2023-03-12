@@ -14,12 +14,16 @@
         </tr>
        
         <tr>
-            <td><label class="form-check-label mr-2"  for="">Giá sản phẩm</label></td>
+            <td><label class="form-check-label mr-2"  for="">Giá sản phẩm (đ)</label></td>
             <td><input class="form-control" id="giasp" name="giasp" type="text"></td>
         </tr>
         <tr>
             <td><label class="form-check-label mr-2"  for="">Số lượng</label></td>
             <td><input class="form-control" id="soluongsp" name="soluongsp" type="text"></td>
+        </tr>
+        <tr>
+            <td><label class="form-check-label mr-2"  for="">Giảm giá (%)</label></td>
+            <td><input class="form-control" id="soluongsp" name="giam_gia" type="number"></td>
         </tr>
         <tr>
             <td><label class="form-check-label mr-2"  for="">Mô tả</label></td>

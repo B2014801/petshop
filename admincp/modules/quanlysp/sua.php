@@ -34,6 +34,10 @@
             <td><input name="motasp" type="text" class="form-control" value=<?php echo $row['motasp']?> ></td>
         </tr>
         <tr>
+            <td><label class="form-check-label mr-2"  for="">Giảm giá (%)</label></td>
+            <td><input name="giam_gia" type="number" class="form-control" value=<?php echo $row['giam_gia']?> ></td>
+        </tr>
+        <tr>
             <td>Nhãn hiệu</td>
             <td>
             <select name="hieusanpham">

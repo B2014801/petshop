@@ -12,6 +12,7 @@
             <th><label class="form-check-label mr-2"  for="">Giá sản phẩm</label></th>
             <th><label class="form-check-label mr-2"  for="">Số lượng sản phẩm</label></th>
             <th><label class="form-check-label mr-2"  for="">Mô tả sản phẩm</label></th>
+            <th><label class="form-check-label mr-2"  for="">Giảm giá</label></th>
             <th><label class="form-check-label mr-2"  for="">Tình trạng sản phẩm</label></th>
             <th><label class="form-check-label mr-2"  for="">Quản lý</label></th>
         </tr>
@@ -31,6 +32,7 @@
             <td><?php echo $row['giasp'] ?></td>
             <td><?php echo $row['soluongsp'] ?></td>
             <td><?php echo $row['motasp'] ?></td>
+            <td><?php echo $row['giam_gia'].' %' ?></td>
             <td><?php
              if($row['tinhtrangsp']==1)
                 echo 'Kích hoạt';

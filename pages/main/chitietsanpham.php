@@ -26,7 +26,15 @@
                 <h2 class="text-uppercase"><?php  echo $row['tensp'] ?></h2>
             </div>
             <div class="row">
-                <h2 class="text-danger text-uppercase"><?php echo  $row['giasp'].'₫' ?></h2>
+                <h2 class="text-uppercase">
+                <?php
+                    $gia = str_replace(".", "", $row['giasp']);
+                    $gia=intval($gia);
+                    $gia_sau_giam=$gia-($gia*intval($row['giam_gia']))/100;
+                    $gia_sau_giam= number_format($gia_sau_giam,0,'','.');
+                    echo $row['giam_gia']>0 ?  '<del style="opacity:0.5;margin-right: 6px;">'.$row['giasp'].' ₫ </del><bdi class="text-danger">'.$gia_sau_giam.' ₫</bdi>' : $row['giasp'].' ₫' 
+                    ?>
+                </h2>
             </div>
             <div class="mt-4">
                     <div class="d-flex">
@@ -81,28 +89,6 @@
           <div class="accordion-body mt-3">
             <h5 class="text-center">Nhận xét về <?php echo $row['tensp']  ?></h5>
             <?php }?>
-            <!-- <div class="form-group">
-              <label class="form-check-label" for=""><b>Nhận xét *</b></label>
-              <textarea class="form-control" name="" id="" cols="30" rows="6"></textarea>
-            </div>
-           
-            <div class="form-inline ">
-                <div class="form-group col-sm-6 pl-md-0 pl-0  ">
-                  <label for="form-check-label"><b>Tên</b></label>
-                  <input type="text" class="form-control w-100 mt-1" placeholder="Nhập tên của bạn">
-                </div>
-                <div class="form-group col-sm-6 pr-md-0 pr-sm-0 pl-0 ">
-                  <label for="form-check-label"><b>Email *</b></label>
-                  <input type="text" class="form-control w-100 mt-1" placeholder="Nhập Email của bạn">
-                </div>
-                <div class="my-3">
-                  <input type="checkbox">
-                  <b>Lưu tên và email của tôi </b>       
-                </div>
-                <div class="col-12 pl-0">
-                  <button class="btn btn-primary" type="submit">GỬI ĐI</button>
-                </div>
-            </div> -->
             <?php
               $id_sanpham=$_GET['sanpham'];
               $sql="SELECT * FROM tbl_binhluan a JOIN tbl_taikhoan b ON a.id_taikhoan=b.id_taikhoan  WHERE a.id_sanpham='$id_sanpham'";
@@ -117,6 +103,7 @@
                   <div class="col-10">
                       <div class="comment-box">
                           <h6><?php echo $row['tenkhachhang'] ?></h6>
+                          
                           <div class="rating-other-user  d-inline-block w-100"> 
                               <?php for($i=0;$i<$row['so_sao'];$i++){ ?>
                                   <i class="fa-solid fa-star" style="color: #ff0000;"></i>
@@ -127,8 +114,13 @@
                           </div>
                           <p class="mb-0"><?php echo $row['ngay_binhluan'] ?></p>
                           <p class="mb-0"><?php echo $row['noidung'] ?></p>
+                          <?php echo (isset( $_SESSION['tendangnhapadmin'])) ? '<a href="pages/main/binhluan.php?action=xoabinhluan&&id='.$row['id_binhluan'].'"class="btn btn-danger">Xoá
+                          </a>':'' ?>
+                          
                       </div>
+                    
                   </div>
+                  
               </div>
           </div>
 

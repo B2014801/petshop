@@ -34,13 +34,13 @@
     <form action="" method="POST" enctype="multipart/form-data">
     <div class="row">
         <!-- <div class="col-4 d-flex justify-content-center align-items-center"> -->
-        <div class="col-4 text-center">
-            <img class="rounded-circle d-block w-100" src="./pages/main/quanlytaikhoan/uploads/<?php echo $row['hinhanh']!=""? $row['hinhanh']:'user.png';   ?>"  alt="">
+        <div class="col-md-4 col-sm-12 col-12 text-center">
+            <img class="rounded-circle d-block mx-auto" width="280px" height="280px" src="./pages/main/quanlytaikhoan/uploads/<?php echo $row['hinhanh']!=""? $row['hinhanh']:'user.png';   ?>"  alt="">
             <label for="hinhanh" class="text-center bg-success text-white p-2 rounded mt-1">Tải ảnh lên</label>
             <input type="file" id="hinhanh" name="hinhanh" class="d-none" >
         </div>
         
-        <div class="col-8">
+        <div class="col-md-8 col-12 col-sm-12 mx-auto">
             
                 <div class="form-group">
                     <label for="">Họ và tên</label>
