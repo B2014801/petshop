@@ -47,9 +47,9 @@
             </tr>
             
     <?php
-            $donhang=array_merge($donhang,(array(array('id_sanpham'=>$row['id_sanpham'],'soluong'=>$row['soluong']))));// luu lai id cua cac san pham de dat hang
+            $donhang=array_merge($donhang,(array(array('id_sanpham'=>$row['id_sanpham'],'soluong'=>$row['soluong'],'gia'=>$row['giasp'],'tamtinh'=>number_format($tamtinh1sp, 0, ',', '.')))));// luu lai id cua cac san pham de dat hang
      }
-            $_SESSION['tongtien-donhang']=$tamtinh;
+            $_SESSION['tongtien-donhang']=number_format($tamtinh, 0, ',', '.');
             $_SESSION['chitiet-donhang']=$donhang;
             // print_r($_SESSION['chitiet-donhang']);
     ?>

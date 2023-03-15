@@ -23,8 +23,9 @@
         <td>Trạng thái đơn hàng</td>
             <td>
             <select name="trangthai">
-                <option <?php echo $row['trangthai_donhang']==1 ? 'selected':'' ?> value="1">Đã duyệt</option>   
-                <option <?php echo $row['trangthai_donhang']==0 ? 'selected':'' ?> value="0">Chưa duyệt</option>   
+                <option <?php echo $row['trangthai_donhang']==1 ? 'selected':'' ?> value="1" style="<?php echo $row['trangthai_donhang'] > 1 ? 'display:none':'' ?>">Duyệt</option>   
+                <option <?php echo $row['trangthai_donhang']==2 ? 'selected':'' ?> value="2" style="<?php echo $row['trangthai_donhang'] > 2 ? 'display:none':'' ?>">Giao hàng</option>   
+                <option <?php echo $row['trangthai_donhang']==3 ? 'selected':'' ?> value="3">Hoàn tất</option>   
             </select>
             </td>
         </tr>

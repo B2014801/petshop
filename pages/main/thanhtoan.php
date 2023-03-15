@@ -56,6 +56,7 @@ if(isset($_POST['capnhatthongtin'])){
                 <th>Tạm tính</th>
             </tr>
             <?php
+                $tongtien=0;
              foreach($_SESSION['chitiet-donhang'] as $item){
                 $sql="SELECT tensp,giasp FROM tbl_sanpham WHERE id_sanpham=$item[id_sanpham]";
                 $sanpham=mysqli_query($mysqli,$sql);
@@ -63,19 +64,20 @@ if(isset($_POST['capnhatthongtin'])){
                 $gia = str_replace(".", "", $row['giasp']);
                 $gia=intval($gia);
                 $tamtinh=intval($item['soluong']) * $gia;
+                $tongtien+=$tamtinh;
              ?>
              <tr>
                 <td><?php echo $row['tensp'] ?> x <b><?php echo $item['soluong']?></b></td>
-                <td  class="text-right"><b><?php echo $tamtinh.' ₫';  ?></b></td>
+                <td  class="text-right"><b><?php echo number_format($tamtinh,0,'','.').' ₫';  ?></b></td>
              </tr>
              <?php }?>
              <tr>
                 <td>Tạm tính</td>
-                <td class="text-right"><b ><?php echo isset($_SESSION['tongtien-donhang']) ? $_SESSION['tongtien-donhang'].' ₫': ''  ?></b></td>
+                <td class="text-right"><b ><?php echo  number_format($tongtien,0,'','.').'₫' ?></b></td>
             </tr>
              <tr>
                 <td>Tổng</td>
-                <td  class="text-right"><b><?php echo isset($_SESSION['tongtien-donhang']) ? $_SESSION['tongtien-donhang'].' ₫': ''  ?></b></td>
+                <td  class="text-right"><b><?php echo number_format($tongtien,0,'','.').'₫'  ?></b></td>
              </tr>
         </table>
         <div class="form-inline">

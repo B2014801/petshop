@@ -48,7 +48,7 @@ if(isset($_SESSION['tongtien-donhang'])&&isset($_SESSION['chitiet-donhang'])){
     $max=mysqli_query($mysqli,"select max(id_donhang) from tbl_donhang");
 	$row=mysqli_fetch_array($max);
     foreach ($_SESSION['chitiet-donhang'] as $item) {
-        $capnhat_chitiet_donhang="INSERT INTO tbl_chitietdonhang(id_donhang,id_sanpham,soluong_sanpham) VALUE ('$row[0]','$item[id_sanpham]','$item[soluong]') ";
+        $capnhat_chitiet_donhang="INSERT INTO tbl_chitietdonhang(id_donhang,id_sanpham,soluong_sanpham,gia_sp_lucmua,tam_tinh) VALUE ('$row[0]','$item[id_sanpham]','$item[soluong]','$item[gia]','$item[tamtinh]')";
         mysqli_query($mysqli,$capnhat_chitiet_donhang);
     }
     // unset($_SESSION['tongtien-donhang']);

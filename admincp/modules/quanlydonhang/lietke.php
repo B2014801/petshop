@@ -1,5 +1,5 @@
 <?php
-    $sql_lietke_donhang='SELECT * FROM tbl_donhang ';
+    $sql_lietke_donhang='SELECT * FROM tbl_donhang WHERE hien_thi=0';
     $query_lietke_donhang=mysqli_query($mysqli,$sql_lietke_donhang);
 ?>
 <h6>Liệt kê hiệu đơn hàng</h6>
@@ -24,10 +24,37 @@
             <td><?php echo $row['ngay_dathang'] ?></td>
             <td><?php echo $row['ngay_giao'] ?></td>
             <td><?php echo $row['tong_tien'] ?></td>
-            <td><?php echo $row['trangthai_donhang']==0 ? 'Chưa duyệt' : 'Đã duyệt'; ?></td>
+            <td><?php 
+             if($row['trangthai_donhang']==0) {
+                echo 'Chưa duyệt';
+             }
+             if($row['trangthai_donhang']==1) {
+                echo 'Đã duyệt';
+             }
+             if($row['trangthai_donhang']==2) {
+                echo 'Đang giao';
+             }
+             if($row['trangthai_donhang']==3) {
+                echo 'Hoàn tất';
+             }
+             ?></td>
             <td>
-                <a href="modules/quanlydonhang/xuly.php?id_donhang=<?php echo $row['id_donhang']?>">Xoá</a> | 
-                <a href="index.php?action=quanlydonhang&query=suadonhang&id_donhang=<?php echo $row['id_donhang']?>">Sửa</a>
+                <!-- <a href="index.php?action=quanlydonhang&query=suadonhang&id_donhang=<php echo $row['id_donhang']?>">Sửa</a>
+                <a href="modules/quanlydonhang/xuly.php?id_donhang=<php echo $row['id_donhang']?>">Xoá</a> |  -->
+            <?php
+                if($row['trangthai_donhang']==0) {
+                    echo '<a href="modules/quanlydonhang/xuly.php?id_donhang='.$row['id_donhang'].'&tt=1">Duyệt</a>';
+                }
+                if($row['trangthai_donhang']==1) {
+                    echo '<a href="modules/quanlydonhang/xuly.php?id_donhang='.$row['id_donhang'].'&tt=2">Giao hàng</a>';
+                }
+                if($row['trangthai_donhang']==2) {
+                    echo '<a href="modules/quanlydonhang/xuly.php?id_donhang='.$row['id_donhang'].'&tt=3">Hoàn tất</a>';
+                }
+                if($row['trangthai_donhang']==3) {
+                    echo '<a href="modules/quanlydonhang/xuly.php?id_donhang='.$row['id_donhang'].'&an_don_hang">Ẩn</a>';
+                }
+             ?>
             </td>
         </tr>
         <?php

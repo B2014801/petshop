@@ -1,11 +1,43 @@
+<?php
+  if(isset($_POST['orderby'])){
+               
+    $sort=$_POST['orderby'];
+    if($sort=='ASC'){
+      // so sánh giá sau khi giảm
+      $sort="CAST(REPLACE(tbl_sanpham.giasp, '.', '') - (tbl_sanpham.giam_gia * REPLACE(tbl_sanpham.giasp, '.', '') / 100) AS UNSIGNED) ASC";
+    }
+    if($sort=='DESC'){
+      $sort="CAST(REPLACE(tbl_sanpham.giasp, '.', '') - (tbl_sanpham.giam_gia * REPLACE(tbl_sanpham.giasp, '.', '') / 100) AS UNSIGNED) DESC";
+    }
+    if($sort=='new'){
+      $sort='tbl_sanpham.id_sanpham DESC';
+    }
+    }
+    else{
+      $sort='tbl_sanpham.id_sanpham DESC';
+    }
+    $hieusp=$_GET['hieusanpham'];
+    $sql="SELECT * from tbl_hieusanpham JOIN tbl_sanpham 
+    ON tbl_hieusanpham.id_hieusanpham=tbl_sanpham.id_hieusanpham 
+    WHERE tbl_hieusanpham.tenhieusp ='$hieusp' ORDER BY $sort ";
+    $chon_tbl_hieusp=mysqli_query($mysqli,$sql);
+    if(mysqli_num_rows($chon_tbl_hieusp)>0){
+?>
 <div class="row card-group mx-3 mt-2">
             <div class="text-center">
             <h3 class="text-uppercase"><?php echo $_GET['hieusanpham']?></h3>
             </div>
+            <form action="" method="POST" id="formsapxepsanpham">
+            <div class="float-right">
+              <select class="p-1" name="orderby" id="sapxepsanpham">
+                  <option <?php if(isset($_POST['orderby'])) {echo $_POST['orderby']=='new'? 'selected':'';} ?> value="new">Mới nhất</option>
+                  <option <?php if(isset($_POST['orderby'])) {echo $_POST['orderby']=='ASC'? 'selected':'';} ?> value="ASC">Thứ tự theo giá: Tăng dần</option>
+                  <option <?php if(isset($_POST['orderby'])) {echo $_POST['orderby']=='DESC'? 'selected':'';} ?> value="DESC">Thứ tự theo giá: Giảm dần</option>
+              </select>
+            </div>
+            </form>
             <?php
-                $sql="SELECT * from tbl_hieusanpham JOIN tbl_sanpham ON tbl_hieusanpham.id_hieusanpham=tbl_sanpham.id_hieusanpham WHERE tbl_hieusanpham.tenhieusp = '".$_GET['hieusanpham']."'";
-                $chon_tbl_hieusp=mysqli_query($mysqli,$sql);
-                if(mysqli_num_rows($chon_tbl_hieusp)>0){
+              
                 while($row=mysqli_fetch_array($chon_tbl_hieusp)){
                     
             ?>
@@ -34,3 +66,9 @@
             </div>
             <?php }}else{echo '<h6 class="text-center mt-3">"Sản phẩm hiện đang hết hàng"</h6>';} ?>
           </div>
+<script>
+  const selectElement = document.getElementById('sapxepsanpham');
+  selectElement.addEventListener('change', (event) => {
+    document.getElementById('formsapxepsanpham').submit();
+  });
+</script>
