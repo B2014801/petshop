@@ -13,11 +13,12 @@
         mysqli_query($mysqli,$sql);
         header('location:../../index.php?action=quanlydonhang&query=hienthi');
     }
-    // else{
-    //     $sql ="DELETE FROM tbl_donhang WHERE id_donhang=$id_donhang";
-    //     $sql_chitietdonhang="DELETE FROM tbl_chitietdonhang WHERE id_donhang=$id_donhang";
-    //     mysqli_query($mysqli,$sql);
-    //     mysqli_query($mysqli,$sql_chitietdonhang);
-    //     header('location:../../index.php?action=quanlydonhang&query=hienthi');
-    // }
+    if(isset($_GET['id_donhang'])&&isset($_GET['xoa_don_hang']))
+    {
+        $sql ="DELETE FROM tbl_donhang WHERE id_donhang=$id_donhang";
+        $sql_chitietdonhang="DELETE FROM tbl_chitietdonhang WHERE id_donhang=$id_donhang";
+        mysqli_query($mysqli,$sql);
+        mysqli_query($mysqli,$sql_chitietdonhang);
+        header('location:../../index.php?action=quanlydonhang&query=hienthi');
+    }
 ?>
