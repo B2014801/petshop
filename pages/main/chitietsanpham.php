@@ -50,8 +50,10 @@
                     </div>
                     <div class="mt-3"><p><b>Lưu ý</b>: Giá sản phẩm có thể thay đổi theo từng thời điểm. <span class="text-primary font-weight-bold">Kết Bạn Zalo</span> hoặc <span class="text-danger font-weight-bold">Gọi Hotline</span> để xem thêm hình ảnh/video chi tiết.</p></div>
                     <div class="d-flex mt-3">
+                    <?php if ($row['soluongsp'] > 0){ ?>
                         <button class="btn btn-lg btn-primary text-white ml-0" type="submit" name="themvaogio">Thêm vào giỏ</button>
-                    </div>
+                    <?php }?>
+                      </div>
         </form>
             </div>
         </div>
@@ -116,6 +118,7 @@
                           <p class="mb-0"><?php echo $row['noidung'] ?></p>
                           <?php echo (isset( $_SESSION['tendangnhapadmin'])) ? '<a href="pages/main/binhluan.php?action=xoabinhluan&&id='.$row['id_binhluan'].'"class="btn btn-danger">Xoá
                           </a>':'' ?>
+                          <?php if(isset($_SESSION['ktradangnhap'])&&$_SESSION['ktradangnhap']==$row['id_taikhoan']){ echo '<a href="pages/main/binhluan.php?action=xoabinhluan&&id='.$row['id_binhluan'].'"class="btn btn-danger">Xoá</a>';} ?>
                           
                       </div>
                     

@@ -3,27 +3,28 @@
     $query_lietke_sp=mysqli_query($mysqli,$sql_lietke_sp);
 ?>
 <h6>Liệt kê sản phẩm</h6>
-<table  class="table table-bordered text-center">
+<table  class="table table-bordered text-center table-responsive" id="dataTable">
+    <thead>
         <tr>
-            <th><label class="form-check-label mr-2"  for="">ID</label></th>
-            <th><label class="form-check-label mr-2"  for="">Tên sản phẩm</label></th>
-            <th><label class="form-check-label mr-2"  for="">Hiệu sản phẩm</label></th>
-            <th><label class="form-check-label mr-2"  for="">Hỉnh ảnh sản phẩm</label></th>
-            <th><label class="form-check-label mr-2"  for="">Giá sản phẩm</label></th>
-            <th><label class="form-check-label mr-2"  for="">Số lượng sản phẩm</label></th>
-            <th><label class="form-check-label mr-2"  for="">Mô tả sản phẩm</label></th>
-            <th><label class="form-check-label mr-2"  for="">Giảm giá</label></th>
-            <th><label class="form-check-label mr-2"  for="">Tình trạng sản phẩm</label></th>
-            <th><label class="form-check-label mr-2"  for="">Quản lý</label></th>
+            <th><label class="form-check-label"  for="">ID</label></th>
+            <th><label class="form-check-label"  for="">Tên sản phẩm</label></th>
+            <th><label class="form-check-label"  for="">Hiệu sản phẩm</label></th>
+            <th><label class="form-check-label"  for="">Hỉnh ảnh sản phẩm</label></th>
+            <th><label class="form-check-label"  for="">Giá sản phẩm</label></th>
+            <th><label class="form-check-label"  for="">Số lượng sản phẩm</label></th>
+            <th><label class="form-check-label"  for="">Mô tả sản phẩm</label></th>
+            <th><label class="form-check-label"  for="">Giảm giá</label></th>
+            <th><label class="form-check-label"  for="">Tình trạng sản phẩm</label></th>
+            <th><label class="form-check-label"  for="">Quản lý</label></th>
         </tr>
-        <tr>
+    </thead>
+    <tbody>
             <?php
              $i=0;
              while($row=mysqli_fetch_array($query_lietke_sp)){
                 $i++;
              
             ?>
-        </tr>
         <tr>
             <td><?php echo $row['id_sanpham'] ?></td>
             <td><?php echo $row['tensp'] ?></td>
@@ -40,12 +41,14 @@
                 echo 'Ẩn';
             ?></td>
             <td class="p-0">
-                <a href="modules/quanlysp/xuly.php?id_sanpham=<?php echo $row['id_sanpham']?>">Xoá</a> | 
+                <a href="modules/quanlysp/xuly.php?id_sanpham=<?php echo $row['id_sanpham']?>">Xoá|</a>
                 <a href="index.php?action=quanlysanpham&query=suasanpham&id_sanpham=<?php echo $row['id_sanpham']?>">Sửa</a>
-              
+             </p>
             </td>
         </tr>
         <?php
              }
             ?> 
+    </tbody>
+        
 </table>

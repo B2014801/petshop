@@ -17,7 +17,7 @@
         mysqli_query($mysqli,$sql);
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }}
-    if(isset($_SESSION['tendangnhapadmin'])){
+    if(isset($_SESSION['tendangnhapadmin'])||isset($_SESSION['ktradangnhap'])){
         if(isset($_GET['action'])&&$_GET['action']=='xoabinhluan'){
             $id_binhluan=$_GET['id'];
             $sql="DELETE FROM tbl_binhluan WHERE id_binhluan='$id_binhluan'";

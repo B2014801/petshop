@@ -14,7 +14,28 @@
         include('main/tintuc.php');
       }
       if($tam=='taikhoan'){
-        include('main/taikhoan.php');
+        include('main/quanlytaikhoan/index.php');
+        if(isset($_GET['query'])){
+          if($_GET['query']=='choxacnhan'){
+          include('main/quanlytaikhoan/choxacnhan.php');
+          }
+          if($_GET['query']=='danggiao'){
+            include('main/quanlytaikhoan/danggiao.php');
+          }
+          if($_GET['query']=='hoanthanh'){
+            include('main/quanlytaikhoan/hoanthanh.php');
+          }
+          if($_GET['query']=='taikhoan'){
+            include('main/quanlytaikhoan/thongtincanhan.php');
+          }
+          if($_GET['query']=='tatca'){
+            include('main/quanlytaikhoan/tatca.php');
+          }
+        }
+        
+        else{
+          include('main/quanlytaikhoan/thongtincanhan.php');
+        }
       }
       if($tam=='gioithieu'){
         include('main/gioithieu.php');
@@ -37,11 +58,16 @@
       if(isset($_GET['search_query'])){
         include('main/timkiemsanpham.php');
       }
+      if(isset($_GET['timdon'])){
+        include('main/quanlytaikhoan/index.php');
+        include('main/quanlytaikhoan/timkiem.php');
+      }
       if(isset($_GET['goiysp'])){
         include('main/goiysp.php');
       }
       // can sua
-      if($tam==""&&!isset($_GET['danhmuc'])&&!isset($_GET['sanpham'])&&!isset($_GET['search_query'])&&!isset($_GET['goiysp'])){
+      if($tam==""&&!isset($_GET['danhmuc'])&&!isset($_GET['sanpham'])
+      &&!isset($_GET['search_query'])&&!isset($_GET['goiysp'])&&!isset($_GET['timdon'])){
         include('main/index.php');
       }
       ?>

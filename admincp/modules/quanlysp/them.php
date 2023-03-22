@@ -1,9 +1,5 @@
 <form class="form-inline mb-2" action="" method="GET">
     <h6 class="mr-3">Thêm sản phẩm</h6>
-    <div class="form-group ml-auto">
-    <input class="form-control mr-1" type="search" name="search_query" placeholder="tìm kiếm" aria-label="Search">
-    <button class="btn btn-outline-success" type="submit">Search</button>
-  </div>
 </form>
 
 <form action="modules/quanlysp/xuly.php"  method="POST" enctype="multipart/form-data" onsubmit="return ValidateFormSanPham()">

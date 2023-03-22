@@ -31,7 +31,13 @@ session_start();
           <i class="fas fa-arrow-up"></i>
         </button>
     </div>
-
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+   <!-- Page level plugins -->
+   <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+   <!-- Page level custom scripts -->
+   <script src="js/demo/datatables-demo.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
@@ -43,13 +49,4 @@ session_start();
 </script>
 <script src="./js/main.js"></script>
 </body>
-<!-- 
-    -validate form
-    cookie giỏ hàng
-    feedback, coment, selloff
-    kiem tra du lieu da chèn hay chưa với thêm vào chi tiết đơn han chổ xữ lý đơn hàng
-    number format
-    tinh giản trang xử lý đơn hàng chổ cộng mảng
-    có dấu tích mới cho đặt hàng
--->
 </html>

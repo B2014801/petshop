@@ -197,7 +197,15 @@ a:hover{
 .rating:hover>input:checked~label:before {
     opacity: 0.4
 }
-  /* // */
+  /* / taikhoan/ */
+
+.taikhoan-nav li{
+    list-style: none;
+    padding: 12px;
+}
+.taikhoan-nav li:hover{
+    background-color: pink;
+}
 
 footer a i {
     margin: 0 6px;
