@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if(isset($_SESSION['dangnhap'])||isset($_SESSION['tendangnhapadmin'])){
+    if(isset($_SESSION['ktradangnhap'])||isset($_SESSION['tendangnhapadmin'])){
     $mysqli = new mysqli("localhost","root","","petshop");
         //them san pham vao gio hang
         if(isset($_POST['themvaogio'])){
@@ -11,6 +11,7 @@
             $user=$_SESSION['ktradangnhap'];
             $id_sanpham=$_GET['id_sanpham'] ?? '';
             $soluong=$_POST['soluong'];
+            
             $sql="  INSERT INTO tbl_giohang (id_taikhoan, id_sanpham,soluong)
                     SELECT '$user', '$id_sanpham','$soluong' FROM DUAL
                     WHERE NOT EXISTS (SELECT id_taikhoan, id_sanpham FROM tbl_giohang 
@@ -48,8 +49,21 @@ if(isset($_SESSION['tongtien-donhang'])&&isset($_SESSION['chitiet-donhang'])){
     $max=mysqli_query($mysqli,"select max(id_donhang) from tbl_donhang");
 	$row=mysqli_fetch_array($max);
     foreach ($_SESSION['chitiet-donhang'] as $item) {
-        $capnhat_chitiet_donhang="INSERT INTO tbl_chitietdonhang(id_donhang,id_sanpham,soluong_sanpham,gia_sp_lucmua,tam_tinh) VALUE ('$row[0]','$item[id_sanpham]','$item[soluong]','$item[gia]','$item[tamtinh]')";
-        mysqli_query($mysqli,$capnhat_chitiet_donhang);
+        // kiem tra so luong dat co lớn hon sl trong kho
+        $sqlsp="SELECT soluongsp from tbl_sanpham where id_sanpham='$item[id_sanpham]'";
+        $sql=mysqli_query($mysqli,$sqlsp);
+        $sl=mysqli_fetch_array($sql);
+        echo $sl['soluongsp'];
+        if($item['soluong']<=$sl['soluongsp']){
+            $capnhat_chitiet_donhang="INSERT INTO tbl_chitietdonhang(id_donhang,id_sanpham,soluong_sanpham,gia_sp_lucmua,tam_tinh) VALUE ('$row[0]','$item[id_sanpham]','$item[soluong]','$item[gia]','$item[tamtinh]')";
+            mysqli_query($mysqli,$capnhat_chitiet_donhang);
+            $capnhat_sl_sp="UPDATE tbl_sanpham SET soluongsp=soluongsp -'$item[soluong]' WHERE id_sanpham='$item[id_sanpham]'";
+            mysqli_query($mysqli,$capnhat_sl_sp);
+        }
+        else{
+            header('Location:../../index.php?quanly=thanhtoan&&thatbai');
+            exit();
+        }
     }
     // unset($_SESSION['tongtien-donhang']);
     // unset($_SESSION['chitiet-donhang']);

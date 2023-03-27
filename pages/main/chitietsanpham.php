@@ -10,7 +10,7 @@
 ?>
 <section class="mx-5">
   <section>
-    <div class="row mb-3">
+    <div class="row my-2">
       <div class="col-md-5 col-12">
         <div class="card text-center border-0">
           <div class="mt-2" style="text-align: left;">
@@ -104,7 +104,7 @@
                   </div>
                   <div class="col-10">
                       <div class="comment-box">
-                          <h6><?php echo $row['tenkhachhang'] ?></h6>
+                          <h6><?php echo $row['hoten'] ?></h6>
                           
                           <div class="rating-other-user  d-inline-block w-100"> 
                               <?php for($i=0;$i<$row['so_sao'];$i++){ ?>
@@ -174,15 +174,52 @@
           </div>
         </div>
       </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingThree">
-          <button class="accordion-button collapsed fs-5" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-            Cảm nhận của khách hàng
-          </button>
-        </h2>
-        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-        </div>
-      </div>
     </div>
+  </section>
+  <section>
+    <hr>
+    <h4>
+      SẢN PHẨM TƯƠNG TỰ
+    </h4>
+    <?php
+    $id=$_GET['sanpham'];
+    $sql="SELECT * from  tbl_sanpham a JOIN  tbl_hieusanpham b
+    ON a.id_hieusanpham=b.id_hieusanpham 
+    WHERE a.id_sanpham!='$id' and b.id_hieusanpham=(select id_hieusanpham 
+    from tbl_sanpham WHERE id_sanpham='$id') LIMIT 4";
+    $chon_tbl_hieusp=mysqli_query($mysqli,$sql);
+    if(mysqli_num_rows($chon_tbl_hieusp)>0){
+  ?>
+    <div class="row card-group mx-3 mt-2">
+      <div class="text-center">
+      </div>
+      <?php
+          while($row=mysqli_fetch_array($chon_tbl_hieusp)){
+      ?>
+      <div class="col-sm-4 col-md-3 col-lg-3 col-6 mb-3">
+        <a href="index.php?sanpham=<?php echo $row['id_sanpham']; ?>" class="text-dark text-decoration-none">
+        <div class="card position-relative">
+        <?php echo $row['giam_gia']>0 ? 
+        '<div class="selloff">
+          <h6 class="text-center m-1">'.$row['giam_gia'].'%</h6>
+        </div>': '' ?>
+          <img width="310px" height="250px" src="admincp/modules/quanlysp/uploads/<?php echo $row['hinhanhsp']; ?>"  class="card-img-top" alt="#">
+          <div class="card-body text-center">
+            <p class="mb-1"><?php echo $row['tensp']?></p>
+            <h5 class="card-title">
+              <?php
+              $gia = str_replace(".", "", $row['giasp']);
+              $gia=intval($gia);
+              $gia_sau_giam=$gia-($gia*intval($row['giam_gia']))/100;
+              $gia_sau_giam= number_format($gia_sau_giam,0,'','.');
+              echo $row['giam_gia']>0 ?  '<del style="opacity:0.5;margin-right: 6px;">'.$row['giasp'].' ₫ </del><bdi class="text-danger">'.$gia_sau_giam.' ₫</bdi>' : $row['giasp'].' ₫' 
+              ?>
+            </h5>
+          </div>
+        </div>
+        </a>
+      </div>
+      <?php }}else{echo '<h6 class="text-center mt-3">"Không có sản phẩm tương tự"</h6>';} ?>
+          </div>
   </section>
 </section>

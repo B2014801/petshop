@@ -14,6 +14,7 @@ a{
 }
 a:hover{
     color: #fff;
+    cursor: pointer;
 }
 .aspect-ratio-169 {
     display: block;

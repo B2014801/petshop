@@ -50,3 +50,6 @@ session_start();
 <script src="./js/main.js"></script>
 </body>
 </html>
+<!-- quan ly kho
+sp lien quan chi tiet don hang
+cap nhat lai so luong sp -->

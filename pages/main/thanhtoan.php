@@ -6,9 +6,10 @@ if(isset($_POST['capnhatthongtin'])){
     $diachi=$_POST['diachi'] ?? '';
     $sodienthoai=$_POST['sodienthoai'] ?? '';
 
-    $sql="UPDATE tbl_taikhoan SET tenkhachhang='$hoten', email='$email',diachi='$diachi',so_dien_thoai='$sodienthoai' WHERE id_taikhoan='".$_SESSION['ktradangnhap']."'";
+    $sql="UPDATE tbl_taikhoan SET hoten='$hoten', email='$email',diachi='$diachi',so_dien_thoai='$sodienthoai' WHERE id_taikhoan='".$_SESSION['ktradangnhap']."'";
     mysqli_query($mysqli,$sql);
 }
+
     if(!isset($_SESSION['ktradangnhap'])){
         header('location:index.php?quanly=dangnhap');
     }
@@ -25,7 +26,7 @@ if(isset($_POST['capnhatthongtin'])){
         <div class="form-inline">
         <div class="form-group my-1 col-sm-6 pl-md-0 pl-0  ">
             <label for="form-check-label"><b>Tên</b></label>
-            <input type="text" name="hoten" value="<?php echo $row['tenkhachhang'] ?>" class="form-control w-100 mt-1" placeholder="Nhập tên của bạn">
+            <input type="text" name="hoten" value="<?php echo $row['hoten'] ?>" class="form-control w-100 mt-1" placeholder="Nhập tên của bạn">
         </div>
         <div class="form-group my-1 col-sm-6 pr-md-0 pr-sm-0 pl-0 ">
             <label for="form-check-label"><b>Số điện thoại</b></label>
@@ -49,6 +50,14 @@ if(isset($_POST['capnhatthongtin'])){
 
     <div class="col-md-6 col-12 mb-2 col" style="border: 2px solid blue;">
     <div  style="padding: 20px;">
+        <h4 class="text-warning">
+            <?php
+            //thong bao loi khi so luong mua lon hon kho
+                if(isset($_GET['thatbai'])){
+                    echo "Vui lòng cập nhật lại số lượng mua";
+                }
+            ?>
+        </h4>
         <h3 class="text-upercase">Đơn hàng của bạn</h3>
         <table class="table table-bordered">
             <tr>

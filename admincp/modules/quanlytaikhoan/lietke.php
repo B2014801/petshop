@@ -18,7 +18,7 @@
     <?php while($row=mysqli_fetch_array($chon_tbl_taikhoan)){ ?>
     <tr>
         <td><?php echo $row['id_taikhoan']?></td>
-        <td><?php echo $row['tenkhachhang']?></td>
+        <td><?php echo $row['hoten']?></td>
         <td><?php echo $row['email']?></td>
         <td><?php echo $row['so_dien_thoai']?></td>
         <td><?php echo $row['diachi']?></td>

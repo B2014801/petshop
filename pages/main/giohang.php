@@ -75,7 +75,8 @@
                 </tr>
                 <tr>
                     <td>Tổng</td>
-                    <td class="text-right"><span name="tongtien"><?php echo number_format($tamtinh, 0, ',', '.').' ₫' ?></span></td>
+                    <td class="text-right"><span name="tongtien"><?php echo number_format($tamtinh, 0, ',', '.').' ₫' ?></span>
+                    </td>
                 </tr>
             </tbody>
         </table>

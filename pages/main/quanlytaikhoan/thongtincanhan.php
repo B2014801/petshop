@@ -14,7 +14,7 @@
             
                 <div class="form-group">
                     <label for="">Họ và tên</label>
-                    <input type="text" class="form-control" value="<?php echo $row['tenkhachhang'] ?>" name="hoten" id="">
+                    <input type="text" class="form-control" value="<?php echo $row['hoten'] ?>" name="hoten" id="">
                 </div>
                 <div class="form-group">
                     <label for="">Email</label>

@@ -38,9 +38,12 @@
         if($tam=="quanlytaikhoan"&&$query=='hienthi'){
             include('modules/quanlytaikhoan/lietke.php');
         }
-        if($tam=="timkiem"&&$query=='hienthi'){
-            include('modules/quanlytaikhoan/lietke.php');
+        if($tam=="quanlykho"&&$query=='hienthi'){
+            include('modules/quanlykho/lietke.php');
         }
+        // if($tam=="timkiem"&&$query=='hienthi'){
+        //     include('modules/quanlytaikhoan/lietke.php');
+        // }
         if(isset($_GET['search_query'])){
             include('modules/quanlysp/timkiem.php');
         }

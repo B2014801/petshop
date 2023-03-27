@@ -46,3 +46,15 @@ function ValidateFormSanPham(){
         return false;
     }
 }
+
+  const selectElement = document.getElementById('sapxepspkho');
+  selectElement.addEventListener('change', (event) => {
+    document.getElementById('formsapxepspkho').submit();
+  });
+function checkCongThemSp(){
+    sl=document.querySelector('#sl-sp-cong-them');
+    if (sl.value=='') {
+        alert('vui lòng nhập số lượng');
+        return false;
+    }
+}

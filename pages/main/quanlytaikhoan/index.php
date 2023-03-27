@@ -17,10 +17,10 @@
         if(!empty($row['hinhanh']) && file_exists('./pages/main/quanlytaikhoan/uploads/'.$row['hinhanh'])){
         unlink('./pages/main/quanlytaikhoan/uploads/'.$row['hinhanh']);
         }
-        $sql="UPDATE tbl_taikhoan SET tenkhachhang='$hoten', email='$email',matkhau='$matkhau',diachi='$diachi',hinhanh='$hinhanh' WHERE id_taikhoan='".$_SESSION['ktradangnhap']."'";
+        $sql="UPDATE tbl_taikhoan SET hoten='$hoten', email='$email',matkhau='$matkhau',diachi='$diachi',hinhanh='$hinhanh' WHERE id_taikhoan='".$_SESSION['ktradangnhap']."'";
         }
         else{
-        $sql="UPDATE tbl_taikhoan SET tenkhachhang='$hoten', email='$email',matkhau='$matkhau',diachi='$diachi' WHERE id_taikhoan='".$_SESSION['ktradangnhap']."'";
+        $sql="UPDATE tbl_taikhoan SET hoten='$hoten', email='$email',matkhau='$matkhau',diachi='$diachi' WHERE id_taikhoan='".$_SESSION['ktradangnhap']."'";
         }
         echo "<script>alert('thanhcong');</script>";
         mysqli_query($mysqli,$sql);

@@ -9,7 +9,7 @@
 <hr>
 <div>
     <p class="mt-2 text-center">Chúng Tôi sẽ rất vui lòng nếu nhận được sự phản hồi của các bạn. Nếu có bất kỳ điều gì chưa hài thì hãy gửi yêu cầu đến chúng tôi. Chúng tôi sẽ cố gắng phản hồi nhanh nhất có thể</p>
-    <form action="" style="margin: 2px 10px 0;">
+    <!-- <form action="" style="margin: 2px 10px 0;">
     <div class="form-group">
         <label class="form-check-label" for=""><b>Nhận xét *</b></label>
         <textarea class="form-control" name="" id="" cols="30" rows="6"></textarea>
@@ -31,7 +31,7 @@
             <button class="btn btn-primary" type="submit">GỬI ĐI</button>
         </div>
     </div>
-    </form>
+    </form> -->
 </div>
 <hr>
 <div>

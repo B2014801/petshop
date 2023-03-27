@@ -48,7 +48,7 @@
               </div>': '' ?>
                 <img width="310px" height="250px" src="admincp/modules/quanlysp/uploads/<?php echo $row['hinhanhsp']; ?>"  class="card-img-top" alt="#">
                 <div class="card-body text-center">
-                  <p class="mb-1"><?php echo $row['tensp']?> mã <?php echo $row['masp']?></p>
+                  <p class="mb-1"><?php echo $row['tensp']?></p>
                   <h5 class="card-title">
                     <?php
                     $gia = str_replace(".", "", $row['giasp']);
@@ -88,7 +88,7 @@
               </div>': '' ?>
                 <img width="310px" height="250px" src="admincp/modules/quanlysp/uploads/<?php echo $row['hinhanhsp']; ?>"  class="card-img-top" alt="#">
                 <div class="card-body text-center">
-                  <p class="mb-1"><?php echo $row['tensp']?> mã <?php echo $row['masp']?></p>
+                  <p class="mb-1"><?php echo $row['tensp']?></p>
                   <!-- hien thi giam gia neu ti le giam gia >0 -->
                   <h5 class="card-title">
                     <?php
