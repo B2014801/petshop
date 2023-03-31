@@ -16,10 +16,24 @@
     else{
       $sort='tbl_sanpham.id_sanpham DESC';
     }
+    $danhmuc=$_GET['danhmuc'];
     $hieusp=$_GET['hieusanpham'];
+    //so san pham trong trang theo y muon
+    $so_sp_trong_trang=8;
+    //lay tra tri cua trang hien tai
+    $this_pages=$_GET['trang'] ?? 1;
+    //tinh offset ví dụ trang 1 là 4 p từ đầu tiên trang sau là từ p tử thứ 5
+    $offset=($this_pages-1)*$so_sp_trong_trang;
+    // tinh tong so san pham theo yeu cau
+    $sql_tong_sp=mysqli_query($mysqli,"SELECT * from tbl_hieusanpham JOIN tbl_sanpham 
+    ON tbl_hieusanpham.id_hieusanpham=tbl_sanpham.id_hieusanpham   WHERE tbl_hieusanpham.tenhieusp ='$hieusp'");
+    $tong_sp=mysqli_num_rows($sql_tong_sp);
+    // so trang can chia
+    $so_trang=ceil($tong_sp/$so_sp_trong_trang);
+
     $sql="SELECT * from tbl_hieusanpham JOIN tbl_sanpham 
     ON tbl_hieusanpham.id_hieusanpham=tbl_sanpham.id_hieusanpham 
-    WHERE tbl_hieusanpham.tenhieusp ='$hieusp' ORDER BY $sort ";
+    WHERE tbl_hieusanpham.tenhieusp ='$hieusp' and tbl_sanpham.tinhtrangsp=1 ORDER BY $sort LIMIT ".$so_sp_trong_trang." OFFSET ".$offset;
     $chon_tbl_hieusp=mysqli_query($mysqli,$sql);
     if(mysqli_num_rows($chon_tbl_hieusp)>0){
 ?>
@@ -28,7 +42,7 @@
             <h3 class="text-uppercase"><?php echo $_GET['hieusanpham']?></h3>
             </div>
             <form action="" method="POST" id="formsapxepsanpham">
-            <div class="float-right">
+            <div class="float-right mb-2">
               <select class="p-1" name="orderby" id="sapxepsanpham">
                   <option <?php if(isset($_POST['orderby'])) {echo $_POST['orderby']=='new'? 'selected':'';} ?> value="new">Mới nhất</option>
                   <option <?php if(isset($_POST['orderby'])) {echo $_POST['orderby']=='ASC'? 'selected':'';} ?> value="ASC">Thứ tự theo giá: Tăng dần</option>
@@ -72,3 +86,29 @@
     document.getElementById('formsapxepsanpham').submit();
   });
 </script>
+<nav class="mx-auto">
+  <ul class="pagination justify-content-center">
+    <?php
+    echo '<li class="page-item '.($this_pages==1? 'disabled' :'').'">
+    <a class="page-link" href="index.php?danhmuc='
+    .$danhmuc.
+    '&hieusanpham='.$hieusp.'&trang='.($this_pages-1).'" tabindex="-1" aria-disabled="true"><</a>
+    </li>'
+    ?>
+    
+    <?php
+      for($i=1;$i<=$so_trang;$i++){
+        echo '<li class="page-item'.($i==$this_pages ? ' active': '').'"><a class="page-link" href="index.php?danhmuc='
+        .$danhmuc.
+        '&hieusanpham='.$hieusp.'&trang='.$i.'">'.$i.'</a></li>';
+      }
+    ?>
+      <?php
+    echo '<li class="page-item '.($this_pages==$so_trang? 'disabled' :'').'">
+    <a class="page-link" href="index.php?danhmuc='
+    .$danhmuc.
+    '&hieusanpham='.$hieusp.'&trang='.($this_pages+1).'" tabindex="-1" aria-disabled="true">></a>
+    </li>'
+    ?>
+  </ul>
+</nav>

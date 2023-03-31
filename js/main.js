@@ -85,6 +85,7 @@ function ValidateFromThanhToanThongTin(){
 }
 // validate hinh thức thanh toán
 function ValidateFromThanhToanDonhang(){
+  ValidateFromThanhToanThongTin();
   let hinhthucthanhtoanmot=document.querySelector('#checkboxTwo');
   let hinhthucthanhtoanhai=document.querySelector('#checkboxThree');
   if(!hinhthucthanhtoanmot.checked && !hinhthucthanhtoanhai.checked){

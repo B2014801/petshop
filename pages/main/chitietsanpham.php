@@ -100,7 +100,7 @@
             <div class="card-comment w-100">
               <div class="d-flex">
                   <div>
-                      <img src="./pages/main/quanlytaikhoan/uploads/<?php echo $row['hinhanh']!=''? $row['hinhanh'] :'user.png' ?>" width="40" class="rounded-circle mt-2">
+                      <img src="./pages/main/quanlytaikhoan/uploads/<?php echo $row['hinhanh']!=''? $row['hinhanh'] :'user.png' ?>" width="40" height="40"  class="rounded-circle mt-2">
                   </div>
                   <div class="col-10">
                       <div class="comment-box">
@@ -116,9 +116,8 @@
                           </div>
                           <p class="mb-0"><?php echo $row['ngay_binhluan'] ?></p>
                           <p class="mb-0"><?php echo $row['noidung'] ?></p>
-                          <?php echo (isset( $_SESSION['tendangnhapadmin'])) ? '<a href="pages/main/binhluan.php?action=xoabinhluan&&id='.$row['id_binhluan'].'"class="btn btn-danger">Xoá
-                          </a>':'' ?>
-                          <?php if(isset($_SESSION['ktradangnhap'])&&$_SESSION['ktradangnhap']==$row['id_taikhoan']){ echo '<a href="pages/main/binhluan.php?action=xoabinhluan&&id='.$row['id_binhluan'].'"class="btn btn-danger">Xoá</a>';} ?>
+                         
+                          <?php if((isset($_SESSION['ktradangnhap'])&&$_SESSION['ktradangnhap']==$row['id_taikhoan'])||isset( $_SESSION['tendangnhapadmin'])){ echo '<a href="pages/main/binhluan.php?action=xoabinhluan&&id='.$row['id_binhluan'].'"class="btn btn-danger">Xoá</a>';} ?>
                           
                       </div>
                     
@@ -142,7 +141,7 @@
                         $sth=mysqli_query($mysqli,$sql2);
                         $row2=mysqli_fetch_array($sth);
                         echo $row2['hinhanh']!="" ? $row2['hinhanh']:'user.png';   }else echo 'user.png'?>" 
-                        width="70" class="rounded-circle mt-2">
+                        width="60" height="60"  class="rounded-circle mt-2">
                   </div>
                   <div class="col-10">
                       <div class="comment-box ml-2">

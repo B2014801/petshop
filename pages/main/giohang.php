@@ -21,7 +21,7 @@
             $donhang=array();
             while($row=mysqli_fetch_array($sql_query)){
             $gia = str_replace(".", "", $row['giasp']);
-            $gia=intval($gia);
+            $gia=intval($gia)-(intval($gia)*$row['giam_gia'])/100;
             $soluong=intval($row['soluong']);
             $tamtinh1sp= $gia*$soluong;
             $tamtinh+=$tamtinh1sp;
@@ -34,7 +34,7 @@
                 <img class="m-2" width="130" height="100" src="admincp/modules/quanlysp/uploads/<?php echo $row['hinhanhsp'] ?>" alt="">
                 </td>
                 <td style="width: 400px;"><?php echo $row['tensp']?></td>
-                <td><span><?php echo $row['giasp'].' ₫' ?></span></td>
+                <td><span><?php echo number_format($gia,0,',','.').' ₫' ?></span></td>
                 <td>
                     <form id="form-id" action="pages/main/xulygiohang.php" method="POST" enctype="application/x-www-form-urlencoded">
                     <div class="add-minus  d-flex mx-1 minus-and-plus">
@@ -47,7 +47,7 @@
             </tr>
             
     <?php
-            $donhang=array_merge($donhang,(array(array('id_sanpham'=>$row['id_sanpham'],'soluong'=>$row['soluong'],'gia'=>$row['giasp'],'tamtinh'=>number_format($tamtinh1sp, 0, ',', '.')))));// luu lai id cua cac san pham de dat hang
+            $donhang=array_merge($donhang,(array(array('id_sanpham'=>$row['id_sanpham'],'soluong'=>$row['soluong'],'gia'=>$gia,'tamtinh'=>number_format($tamtinh1sp, 0, ',', '.')))));// luu lai id cua cac san pham de dat hang
      }
             $_SESSION['tongtien-donhang']=number_format($tamtinh, 0, ',', '.');
             $_SESSION['chitiet-donhang']=$donhang;

@@ -3,7 +3,7 @@
     $query_sua_sp=mysqli_query($mysqli,$sql_sua_sp);
 ?>
 <h6>Sửa sản phẩm</h6>
-<form action="modules/quanlysp/xuly.php?id_sanpham=<?php echo $_GET['id_sanpham'] ?>" method="POST" enctype="multipart/form-data">
+<form action="modules/quanlysp/xuly.php?id_sanpham=<?php echo $_GET['id_sanpham'] ?>" method="POST" enctype="multipart/form-data" onsubmit="return  ValidateFormSanPham()">
     <?php
     while($row= mysqli_fetch_array($query_sua_sp)){
 
@@ -11,23 +11,19 @@
     <table class="table table-bordered">
     <tr>
             <td><label class="form-check-label mr-2"  for="">Tên sản phẩm</label></td>
-            <td><input class="form-control" value=<?php echo $row['tensp'] ?> name="tensp" type="text"></td>
-        </tr>
-        <tr>
-            <td><label class="form-check-label mr-2"  for="">Mã sản phẩm</label></td>
-            <td><input class="form-control" name="masp" type="text" value=<?php echo $row['masp'] ?> ></td>
+            <td><input class="form-control" value="<?php echo $row['tensp'] ?>" id="tensp" name="tensp" type="text"></td>
         </tr>
         <tr>
             <td><Label class="form-check-label mr-2">Hình ảnh</Label></td>
             <td><input name="hinhanhsp" type="file"></td>
         </tr>
         <tr>
-            <td><label class="form-check-label mr-2"  for="">Giá sản phẩm</label></td>
-            <td><input  name="giasp" type="text"  class="form-control" value=<?php echo $row['giasp'] ?>></td>
+            <td><label class="form-check-label mr-2"   for="">Giá sản phẩm</label></td>
+            <td><input  name="giasp" type="text" id="giasp" class="form-control" value=<?php echo $row['giasp'] ?>></td>
         </tr>
         <tr>
             <td><label class="form-check-label mr-2"  for="">Số lượng</label></td>
-            <td><input class="form-control" value=<?php echo $row['soluongsp'] ?> name="soluongsp" type="text"></td>
+            <td><input class="form-control" id="soluongsp" value=<?php echo $row['soluongsp'] ?> name="soluongsp" type="text"></td>
         </tr>
         <tr>
             <td><label class="form-check-label mr-2"  for="">Mô tả</label></td>
@@ -58,9 +54,10 @@
                     <?php if($row['tinhtrangsp']==1){ ?>
                     <option selected value="1">Kích hoạt</option>
                     <option value="0">Ẩn</option>
-                    <?php } else?>
+                    <?php } if($row['tinhtrangsp']==0){?>
                     <option  value="1">Kích hoạt</option>
                     <option selected value="0">Ẩn</option>
+                    <?php } ?>
                 </select>
             </td>
         </tr>

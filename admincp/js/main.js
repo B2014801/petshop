@@ -28,6 +28,7 @@ function ValidateFormSanPham(){
     let giasp=document.querySelector('#giasp');
     let soluongsp=document.querySelector('#soluongsp');
     let hinhanhsp=document.querySelector('#hinhanhsp');
+    const pattern = /^\d{1,3}(\.\d{3})*$/;
 
     if(tensp.value==''){
         alert('vui lòng nhập tên sản phẩm');
@@ -35,6 +36,10 @@ function ValidateFormSanPham(){
     }
     if(giasp.value==''){
         alert('vui lòng nhập giá sản phẩm');
+        return false;
+    }
+    if(!pattern.test(giasp.value)){
+        alert('vui lòng nhập định dạng (1.000.000)');
         return false;
     }
     if(soluongsp.value==''){
@@ -47,10 +52,7 @@ function ValidateFormSanPham(){
     }
 }
 
-  const selectElement = document.getElementById('sapxepspkho');
-  selectElement.addEventListener('change', (event) => {
-    document.getElementById('formsapxepspkho').submit();
-  });
+
 function checkCongThemSp(){
     sl=document.querySelector('#sl-sp-cong-them');
     if (sl.value=='') {

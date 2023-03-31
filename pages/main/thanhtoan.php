@@ -39,7 +39,7 @@ if(isset($_POST['capnhatthongtin'])){
         </div>
         <div class="form-group my-1 col-sm-12 pr-md-0 pr-sm-0 pl-0 ">
             <label for="form-check-label"><b>Địa chỉ nhận hàng *</b></label>
-            <input type="text" id="diachi" name="diachi" value="<?php echo $row['diachi'] ?>" class="form-control w-100 mt-1" placeholder="Nhập Email của bạn">
+            <input type="text" id="diachi" name="diachi" value="<?php echo $row['diachi'] ?>" class="form-control w-100 mt-1" placeholder="Nhập địa chỉ của bạn">
         </div>
         
         
@@ -70,7 +70,7 @@ if(isset($_POST['capnhatthongtin'])){
                 $sql="SELECT tensp,giasp FROM tbl_sanpham WHERE id_sanpham=$item[id_sanpham]";
                 $sanpham=mysqli_query($mysqli,$sql);
                 $row=mysqli_fetch_array($sanpham);
-                $gia = str_replace(".", "", $row['giasp']);
+                $gia = $item['gia'];
                 $gia=intval($gia);
                 $tamtinh=intval($item['soluong']) * $gia;
                 $tongtien+=$tamtinh;
@@ -90,7 +90,7 @@ if(isset($_POST['capnhatthongtin'])){
              </tr>
         </table>
         <div class="form-inline">
-        <form action="pages/main/xulygiohang.php?action=dathang" method="POST" onsubmit="return ValidateFromThanhToanDonhang();">
+        <form action="pages/main/xulygiohang.php?action=dathang" method="POST" onsubmit="return ValidateFromThanhToanDonhang()">
         <div class="accordion form-group col-12 pl-md-0" id="accordionPayment">
             <div>
                 <div class="form-group" id="headingOne">

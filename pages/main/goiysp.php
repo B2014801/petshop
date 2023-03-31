@@ -6,7 +6,7 @@
     $num=mysqli_num_rows(mysqli_query($mysqli,$sql));
     if($num>0){
 ?>
-<div class="container">
+<div class="row card-group mx-3 mt-2">
 <div class="row card-group mx-3 mt-2">
     <h3 class="text-center text-uppercase">Những sản phẩm bạn cũng có thể mua</h3>
     <?php
@@ -31,7 +31,7 @@
                     <div class="card position-relative">
                         <img width="310px" height="250px" src="admincp/modules/quanlysp/uploads/<?php echo $row['hinhanhsp']; ?>"  class="card-img-top" alt="#">
                         <div class="card-body text-center">
-                        <p class="mb-1"><?php echo $row['tensp']?> mã <?php echo $row['masp']?></p>
+                        <p class="mb-1"><?php echo $row['tensp']?></p>
                         <h5 class="card-title"><?php echo $row['giasp'].' ₫' ?></h5>
                         </div>
                     </div>

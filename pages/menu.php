@@ -9,7 +9,7 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
               <a href="index.php" class="mr-2 ">
-                    <img  src="./img/logo.png" class="" alt="" width="130" height="70">
+                    <img  src="./img/trangchu/logo6.jpg" class="" alt="" width="130" height="70">
               </a>
             <div class="collapse navbar-collapse justify-content-between mr-3" >
             

@@ -67,7 +67,7 @@
             <th><label class="form-check-label"  for="">Hỉnh ảnh sản phẩm</label></th>
             <th><label class="form-check-label"  for="">Giá sản phẩm</label></th>
             <th><label class="form-check-label"  for="">Số lượng sản phẩm</label></th>
-            <th><label class="form-check-label"  for="">Mô tả sản phẩm</label></th>
+            <th><label class="form-check-label mb-2"  for="">Mô tả sản phẩm</label></th>
             <th><label class="form-check-label"  for="">Giảm giá</label></th>
             <th><label class="form-check-label"  for="">Tình trạng sản phẩm</label></th>
             <th><label class="form-check-label"  for="">Quản lý</label></th>
@@ -95,9 +95,9 @@
             else
                 echo 'Ẩn';
             ?></td>
-            <td class="p-0 form-inline">
-                <a href="modules/quanlysp/xuly.php?id_sanpham=<?php echo $row['id_sanpham']?>">Xoá|</a>
-                <a href="index.php?action=quanlysanpham&query=suasanpham&id_sanpham=<?php echo $row['id_sanpham']?>">Sửa</a>
+            <td class="form-inline">
+                <a class="mx-auto" href="modules/quanlysp/xuly.php?id_sanpham=<?php echo $row['id_sanpham']?>">Xoá</a>
+                <a class="mt-2 mx-auto" href="index.php?action=quanlysanpham&query=suasanpham&id_sanpham=<?php echo $row['id_sanpham']?>">Sửa</a>
             </td>
         </tr>
         <?php
@@ -107,3 +107,9 @@
     </tbody>
         
 </table>
+<script>
+      const selectElement = document.getElementById('sapxepspkho');
+  selectElement.addEventListener('change', (event) => {
+    document.getElementById('formsapxepspkho').submit();
+  });
+</script>

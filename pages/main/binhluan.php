@@ -10,7 +10,8 @@
         $id_sanpham=$_GET['id_sanpham'];
         $user=$_SESSION['ktradangnhap'];
         $noidung=$_POST['noidung'];
-        $ngay=date('Y-m-d');
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        $ngay=date("Y-m-d H:i:s");
 
         $so_sao=isset($_POST['rating']) ? $_POST['rating'] : 0;
         $sql="INSERT INTO tbl_binhluan(id_taikhoan,id_sanpham,so_sao,noidung,ngay_binhluan) values('$user','$id_sanpham','$so_sao','$noidung','$ngay')";
