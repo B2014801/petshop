@@ -69,6 +69,37 @@ hoten=document.querySelector('#hoten');
     }
     
   }
+function ValidateDoimk(){
+  pass=document.querySelector('#password-input-doimatkhau-laplai');
+  if(pass.value==""){
+    alert('Mật khẩu không được bỏ trống ')
+    return false
+    }
+if(pass.value.length<6){
+    alert('Mật khẩu tối thiểu 6 ký tự')
+    return false
+}
+else{
+    let flag1=0,flag2=0;//kiem tra ky tu: flag1 so,flag2 là ky tu
+    for(let i=0;i<pass.value.length;i++){
+    if(isFinite(pass.value[i])==true){// kiem tra co phai la so huu han hay khong
+        flag1=1;}// danh dau co mot ky tu la so
+    else{
+        flag2=1;
+    }
+    }
+    if(flag1==0||flag2==0){
+        alert('Mật khẩu phải có các ký tự và chữ số');
+        return false
+    }
+  
+}
+if(pass.value!=pass_laplai.value){
+  alert('mật khẩu không khớp');
+  return false;
+}
+
+}
 // validate form thanh toán 
 function ValidateFromThanhToanThongTin(){
   let sdt=document.querySelector('#sdt');
@@ -85,7 +116,17 @@ function ValidateFromThanhToanThongTin(){
 }
 // validate hinh thức thanh toán
 function ValidateFromThanhToanDonhang(){
-  ValidateFromThanhToanThongTin();
+  let sdt=document.querySelector('#sdt');
+  let diachi=document.querySelector('#diachi');
+
+  if(sdt.value==''){
+    alert('vui lòng cập nhật số điện thoại');
+    return false;
+  }
+  if(diachi.value==''){
+    alert('vui lòng cập nhật địa chỉ nhận hàng');
+    return false;
+  }
   let hinhthucthanhtoanmot=document.querySelector('#checkboxTwo');
   let hinhthucthanhtoanhai=document.querySelector('#checkboxThree');
   if(!hinhthucthanhtoanmot.checked && !hinhthucthanhtoanhai.checked){

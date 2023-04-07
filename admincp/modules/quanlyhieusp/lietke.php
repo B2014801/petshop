@@ -2,13 +2,13 @@
     $sql_lietke_hieusp='SELECT * FROM tbl_hieusanpham ';
     $query_lietke_hieusp=mysqli_query($mysqli,$sql_lietke_hieusp);
 ?>
-<h6>Liệt kê hiệu sản phẩm</h6>
+<h6>Liệt kê loại sản phẩm</h6>
 <table  class="table table-bordered" id="dataTable">
     <thead>
         <tr>
             <th><label class="form-check-label mr-2"  for="">ID</label></th>
-            <th><label class="form-check-label mr-2"  for="">Tên hiệu sản phẩm</label></th>
-            <th><label class="form-check-label mr-2"  for="">Ảnh hiệu sản phẩm</label></th>
+            <th><label class="form-check-label mr-2"  for="">Tên loại sản phẩm</label></th>
+            <th><label class="form-check-label mr-2"  for="">Ảnh loại sản phẩm</label></th>
             <th><label class="form-check-label mr-2"  for="">Danh mục</label></th>
             <th><label class="form-check-label mr-2"  for="">Quản lý</label></th>
         </tr>

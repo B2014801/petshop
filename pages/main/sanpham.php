@@ -86,6 +86,7 @@
     document.getElementById('formsapxepsanpham').submit();
   });
 </script>
+<?php if($tong_sp>$so_sp_trong_trang){?>
 <nav class="mx-auto">
   <ul class="pagination justify-content-center">
     <?php
@@ -112,3 +113,4 @@
     ?>
   </ul>
 </nav>
+<?php } ?>

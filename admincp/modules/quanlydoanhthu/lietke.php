@@ -1,6 +1,20 @@
+
 <div class="card shadow mb-4">
-    <div class="card-header py-3">
+    <div class="card-header py-3 form-inline">
         <h6 class="m-0 font-weight-bold text-primary">Danh thu</h6>
+        <div class="ml-auto">
+          <form action="" id="thongke-doanhthu" method="POST">
+            <select name="chon-nam" id="chon-nam">
+              <?php
+              $year=date('Y');
+                for($i=2023;$i<=$year;$i++){
+                    echo '<option value="'.$i.'" name=nam'.($_POST['chon-nam']==$i ? ' selected':'').'>'.$i.'</option>';
+                }
+              ?>
+              
+              </select>
+              </form>
+        </div>
     </div>
     <div class="card-body">
         <div class="chart-bar">
@@ -12,9 +26,7 @@
     </div>
 </div>
 <?php
-      
-        $sql = "SELECT EXTRACT(MONTH FROM ngay_giao) AS month, SUM(CAST(REPLACE(tong_tien, '.', '') AS UNSIGNED)) AS Total FROM tbl_donhang GROUP BY EXTRACT(MONTH FROM ngay_giao)";
-
+        $sql = "SELECT EXTRACT(MONTH FROM ngay_dathang) AS month, SUM(CAST(REPLACE(tong_tien, '.', '') AS UNSIGNED)) AS Total FROM tbl_donhang ".(isset($_POST['chon-nam'])? "WHERE EXTRACT(YEAR FROM ngay_dathang)=".$_POST['chon-nam']."" :'')."  GROUP BY EXTRACT(MONTH FROM ngay_dathang)";
         $result = mysqli_query($mysqli, $sql);
         $sales = array();
         $labels = array();
@@ -27,6 +39,12 @@
         }
       
 ?>
+<script>
+  const selectElement = document.getElementById('chon-nam');
+  selectElement.addEventListener('change', (event) => {
+    document.getElementById('thongke-doanhthu').submit();
+  });
+</script>
 <script src="js/Chart.min.js"></script>
 <script>
 var ctx = document.getElementById("myBarChart");

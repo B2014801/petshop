@@ -2,7 +2,6 @@
     if(isset($_POST['capnhatthongtin'])){
         $hoten=$_POST['hoten'] ?? '';
         $email=$_POST['email'] ?? '';
-        $matkhau=$_POST['matkhau'] ?? '';
         $diachi=$_POST['diachi'] ?? '';
 
         $hinhanh=$_FILES['hinhanh']['name'] ?? '';
@@ -17,11 +16,17 @@
         if(!empty($row['hinhanh']) && file_exists('./pages/main/quanlytaikhoan/uploads/'.$row['hinhanh'])){
         unlink('./pages/main/quanlytaikhoan/uploads/'.$row['hinhanh']);
         }
-        $sql="UPDATE tbl_taikhoan SET hoten='$hoten', email='$email',matkhau='$matkhau',diachi='$diachi',hinhanh='$hinhanh' WHERE id_taikhoan='".$_SESSION['ktradangnhap']."'";
+        $sql="UPDATE tbl_taikhoan SET hoten='$hoten', email='$email',diachi='$diachi',hinhanh='$hinhanh' WHERE id_taikhoan='".$_SESSION['ktradangnhap']."'";
         }
         else{
-        $sql="UPDATE tbl_taikhoan SET hoten='$hoten', email='$email',matkhau='$matkhau',diachi='$diachi' WHERE id_taikhoan='".$_SESSION['ktradangnhap']."'";
+        $sql="UPDATE tbl_taikhoan SET hoten='$hoten', email='$email',diachi='$diachi' WHERE id_taikhoan='".$_SESSION['ktradangnhap']."'";
         }
+        echo "<script>alert('thanhcong');</script>";
+        mysqli_query($mysqli,$sql);
+    }
+    if(isset($_POST['doi-matkhau'])){
+        $mkmoi=$_POST['matkhau-moi'];
+        $sql="UPDATE tbl_taikhoan SET matkhau='$mkmoi' WHERE id_taikhoan='".$_SESSION['ktradangnhap']."'";
         echo "<script>alert('thanhcong');</script>";
         mysqli_query($mysqli,$sql);
     }

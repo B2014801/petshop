@@ -20,7 +20,7 @@ if(isset($_POST['dangky'])){
         echo "<script>alert('email đã tồn tại');</script>";
     }
     else{
-    $sql="INSERT INTO tbl_taikhoan(hoten,email,matkhau) value('$hoten','$email','$matkhau')";
+    $sql="INSERT INTO tbl_taikhoan(hoten,email,matkhau,vaitro) value('$hoten','$email','$matkhau','user')";
     $sql_dangky=mysqli_query($mysqli,$sql);
     
     if(isset($sql_dangky)){
@@ -32,7 +32,7 @@ if(isset($_POST['dangky'])){
         
         $row = mysqli_fetch_array($sql_mk);
         // $_SESSION['dangnhap']= $row['hoten'];//de hien thi thong tin dang nhap
-        $_SESSION['ktradangnhap']= $row['id_taikhoan']; // kiem tra co dang nhap thi them vao tbl_giohang
+        $_SESSION['ktradangnhap']= $row['id_taikhoan']; // kiem tra co dang nhap khong
         header("Location:index.php");
     }
         
