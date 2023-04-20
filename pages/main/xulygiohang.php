@@ -48,7 +48,8 @@ if(isset($_SESSION['tongtien-donhang'])&&isset($_SESSION['chitiet-donhang'])){
     $capnhat_chitiet_donhang;
     $max=mysqli_query($mysqli,"select max(id_donhang) from tbl_donhang");
 	$row=mysqli_fetch_array($max);
-    foreach ($_SESSION['chitiet-donhang'] as $item) {
+    $chitietdonhang=$_SESSION['chitiet-donhang'];
+    foreach ($chitietdonhang as $item) {
         // kiem tra so luong dat co lớn hon sl trong kho
         $sqlsp="SELECT soluongsp from tbl_sanpham where id_sanpham='$item[id_sanpham]'";
         $sql=mysqli_query($mysqli,$sqlsp);

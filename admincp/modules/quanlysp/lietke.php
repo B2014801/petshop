@@ -63,8 +63,8 @@
         <tr>
             <th><label class="form-check-label mb-2"  for="">ID</label></th>
             <th><label class="form-check-label mb-2"  for="">Tên sản phẩm</label></th>
-            <th><label class="form-check-label mb-2"  for="">Hiệu sản phẩm</label></th>
-            <th><label class="form-check-label"  for="">Hỉnh ảnh sản phẩm</label></th>
+            <th><label class="form-check-label mb-2"  for="">Loại</label></th>
+            <th><label class="form-check-label"  for="">Hình ảnh sản phẩm</label></th>
             <th><label class="form-check-label"  for="">Giá sản phẩm</label></th>
             <th><label class="form-check-label"  for="">Số lượng sản phẩm</label></th>
             <th><label class="form-check-label mb-2"  for="">Mô tả sản phẩm</label></th>

@@ -26,7 +26,7 @@
                 <h2 class="text-uppercase"><?php  echo $row['tensp'] ?></h2>
             </div>
             <div class="row">
-                <h2 class="text-uppercase">
+                <h4 class="text-uppercase">
                 <?php
                     $gia = str_replace(".", "", $row['giasp']);
                     $gia=intval($gia);
@@ -34,7 +34,7 @@
                     $gia_sau_giam= number_format($gia_sau_giam,0,'','.');
                     echo $row['giam_gia']>0 ?  '<del style="opacity:0.5;margin-right: 6px;">'.$row['giasp'].' ₫ </del><bdi class="text-danger">'.$gia_sau_giam.' ₫</bdi>' : $row['giasp'].' ₫' 
                     ?>
-                </h2>
+                </h4>
             </div>
             <div class="mt-4">
                     <div class="d-flex">
@@ -100,7 +100,7 @@
             <div class="card-comment w-100">
               <div class="d-flex">
                   <div>
-                      <img src="./pages/main/quanlytaikhoan/uploads/<?php echo $row['hinhanh']!=''? $row['hinhanh'] :'user.png' ?>" width="40" height="40"  class="rounded-circle mt-2">
+                      <img src="./pages/main/quanlytaikhoan/uploads/<?php echo $row['hinhanh']!=''? $row['hinhanh'] :'user.jpg' ?>" width="40" height="40"  class="rounded-circle mt-2">
                   </div>
                   <div class="col-10">
                       <div class="comment-box">
@@ -140,7 +140,7 @@
                         $sql2="SELECT * FROM tbl_taikhoan where id_taikhoan='".$_SESSION['ktradangnhap']."'";
                         $sth=mysqli_query($mysqli,$sql2);
                         $row2=mysqli_fetch_array($sth);
-                        echo $row2['hinhanh']!="" ? $row2['hinhanh']:'user.png';   }else echo 'user.png'?>" 
+                        echo $row2['hinhanh']!="" ? $row2['hinhanh']:'user.jpg';   }else echo 'user.jpg'?>" 
                         width="60" height="60"  class="rounded-circle mt-2">
                   </div>
                   <div class="col-10">

@@ -7,7 +7,7 @@
             <select name="chon-nam" id="chon-nam">
               <?php
               $year=date('Y');
-                for($i=2023;$i<=$year;$i++){
+                for($i=2022;$i<=$year;$i++){
                     echo '<option value="'.$i.'" name=nam'.($_POST['chon-nam']==$i ? ' selected':'').'>'.$i.'</option>';
                 }
               ?>
@@ -26,7 +26,7 @@
     </div>
 </div>
 <?php
-        $sql = "SELECT EXTRACT(MONTH FROM ngay_dathang) AS month, SUM(CAST(REPLACE(tong_tien, '.', '') AS UNSIGNED)) AS Total FROM tbl_donhang ".(isset($_POST['chon-nam'])? "WHERE EXTRACT(YEAR FROM ngay_dathang)=".$_POST['chon-nam']."" :'')."  GROUP BY EXTRACT(MONTH FROM ngay_dathang)";
+        $sql = "SELECT EXTRACT(MONTH FROM ngay_dathang) AS month, SUM(CAST(REPLACE(tong_tien, '.', '') AS UNSIGNED)) AS Total FROM tbl_donhang WHERE EXTRACT(YEAR FROM ngay_dathang)= ".(isset($_POST['chon-nam'])? $_POST['chon-nam'] :2022)."  GROUP BY EXTRACT(MONTH FROM ngay_dathang)";
         $result = mysqli_query($mysqli, $sql);
         $sales = array();
         $labels = array();

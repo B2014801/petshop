@@ -25,20 +25,20 @@ if(isset($_POST['capnhatthongtin'])){
         <h3 class="col-12 pl-0">Thông tin thanh toán</h3>
         <div class="form-inline">
         <div class="form-group my-1 col-sm-6 pl-md-0 pl-0  ">
-            <label for="form-check-label"><b>Tên</b></label>
+            <label for="form-check-label"><b>Tên </b>(<strong class="text-danger">*</strong>)</label>
             <input type="text" name="hoten" value="<?php echo $row['hoten'] ?>" class="form-control w-100 mt-1" placeholder="Nhập tên của bạn">
         </div>
         <div class="form-group my-1 col-sm-6 pr-md-0 pr-sm-0 pl-0 ">
-            <label for="form-check-label"><b>Số điện thoại</b></label>
+            <label for="form-check-label"><b>Số điện thoại </b> (<strong class="text-danger">*</strong>)</label>
             <input type="text" id="sdt" name="sodienthoai" value="<?php echo $row['so_dien_thoai'] ?>" class="form-control w-100 mt-1" placeholder="Nhập Email của bạn">
         </div>
         </div>
         <div class="form-group my-1 col-sm-12 pr-md-0 pr-sm-0 pl-0 ">
-            <label for="form-check-label"><b>Email</b></label>
+            <label for="form-check-label"><b>Email</b>(<strong class="text-danger">*</strong>)</label>
             <input type="text" name="email" value="<?php echo $row['email'] ?>" class="form-control w-100 mt-1" placeholder="Nhập Email của bạn">
         </div>
         <div class="form-group my-1 col-sm-12 pr-md-0 pr-sm-0 pl-0 ">
-            <label for="form-check-label"><b>Địa chỉ nhận hàng *</b></label>
+            <label for="form-check-label"><b>Địa chỉ nhận hàng </b>(<strong class="text-danger">*</strong>)</label>
             <input type="text" id="diachi" name="diachi" value="<?php echo $row['diachi'] ?>" class="form-control w-100 mt-1" placeholder="Nhập địa chỉ của bạn">
         </div>
         
